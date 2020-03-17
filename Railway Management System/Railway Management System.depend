@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1584463595 source:d:\github\railway\railway management system\main.cpp
+	<iostream>
+	<Functions.h>
+
+1584462886 source:d:\github\railway\railway management system\src\station.cpp
+	<iostream>
+	"Station.h"
+
+1584462910 d:\github\railway\railway management system\include\station.h
+	<iostream>
+
+1584463608 d:\github\railway\railway management system\include\functions.h
+	<Station.h>
+
