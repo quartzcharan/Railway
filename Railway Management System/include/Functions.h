@@ -3,6 +3,8 @@
 #include <Train.h>
 using namespace std;
 
+Station s1("Chittagong"), s2("Dhaka"), s3("Khulna");
+
 void createTrains (Train *t)
 {
     t->setStation("Chittagong", 0);
@@ -13,35 +15,40 @@ void createTrains (Train *t)
     t->setArrTime(12, 1);
     t->setDeptTime(13, 1);
     t->setArrTime(14, 2);
-}
 
-Station createStations (Train *t)
-{
-    Station s1("Chittagong"), s2("Dhaka"), s3("Khulna");
     s1.setTrain(t, 0);
-    return s1;
+    s2.setTrain(t, 0);
 }
 
-void bookTicket (Station s, string str)
+void buyTicket(string from, string to)
 {
-    Train tempTrain, chosenTrain;
-    int deptInd = -1, arrInd = -1;
-    string tempString;
-    for (int i=0; i<1; i++)
+    Station A, B;
+    int departure, arrival;
+    if(s1.Getlocation() == from)
+        A = s1;
+    else if(s2.Getlocation() == from)
+        A = s2;
+    else if(s3.Getlocation() == from)
+        A = s3;
+    for(int i=0; i<A.getTotalTrains(); i++)
     {
-        tempTrain = s.getTrain(i);
-        for (int i=0; i<3; i++)
+        int trainFound = 0;
+        Train tempTrain = A.getTrain(i);
+        for(int j=0; j<3; j++)
         {
-            if (tempTrain.getStation(i) == s.Getlocation())   deptInd = i;
-            if (tempTrain.getStation(i) == str && deptInd != -1)
+            if(tempTrain.getStation(j) == from)
+                departure = tempTrain.getDeptTime(j);
+
+            if(tempTrain.getStation(j) == to)
             {
-                tempString = str;
-                arrInd = i;
-                chosenTrain = tempTrain;
+                trainFound = 1;
+                B = tempTrain.getStation(j);
+                arrival = tempTrain.getArrTime(j);
                 break;
             }
         }
+        if(trainFound == 1)
+            cout<<"ID: "<<tempTrain.getTrainID()<<"   Departure Station: "<<A.Getlocation()<<"   Departure Time: "<<departure<<"   Arrival Station: "<<B.Getlocation()<<"   Arrival Time: "<<arrival<<endl;
     }
-    cout<<"Ticket Booked:\nDeparture Station: "<<s.Getlocation()<<"\nDeparture Time: "<<chosenTrain.getDeptTime(deptInd)<<"\nArrival Station: "<<str<<"\nArrival Time: "<<chosenTrain.getArrTime(arrInd);
 
 }

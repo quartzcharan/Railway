@@ -6,6 +6,7 @@ class Train
 {
     public:
         Train();
+        int getTrainID() {return trainID;}
         void setStation (std::string s, int ind) { stArr[ind] = s; }
         std::string getStation (int i) { return stArr[i]; }
         void setDeptTime (int i, int ind) { deptTime[ind] = i; }

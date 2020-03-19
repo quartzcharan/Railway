@@ -13,8 +13,9 @@ class Station
         std::string Getlocation() { return location; }
         void Setlocation(std::string val) { location = val; }
 
-        void setTrain(Train *t, int ind) { trainArr[ind] = t; }
+        void setTrain(Train *t, int ind) { trainArr[ind] = t; totalTrains++; }
         Train getTrain(int i) { return *trainArr[i]; }
+        int getTotalTrains() { return totalTrains;}
 
 
 
@@ -23,6 +24,7 @@ class Station
     private:
         std::string location;   //location of train; used in trie
         Train *trainArr[3];
+        int totalTrains;
 };
 
 #endif // STATION_H
