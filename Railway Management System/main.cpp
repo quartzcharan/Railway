@@ -4,5 +4,10 @@ using namespace std;
 
 int main()
 {
-    createStations();
+    Train t1;
+    Station s;
+    createTrains(&t1);
+    s = createStations(&t1);
+    bookTicket(s, "Khulna");
+
 }

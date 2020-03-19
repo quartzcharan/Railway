@@ -1,15 +1,25 @@
 # depslib dependency file v1.0
-1584463595 source:d:\github\railway\railway management system\main.cpp
+1584630140 source:d:\github\railway\railway management system\main.cpp
 	<iostream>
 	<Functions.h>
 
-1584462886 source:d:\github\railway\railway management system\src\station.cpp
+1584628734 source:d:\github\railway\railway management system\src\station.cpp
 	<iostream>
 	"Station.h"
+	"Train.h"
 
-1584462910 d:\github\railway\railway management system\include\station.h
+1584628848 d:\github\railway\railway management system\include\station.h
+	<iostream>
+	<Train.h>
+
+1584630576 d:\github\railway\railway management system\include\functions.h
+	<iostream>
+	<Station.h>
+	<Train.h>
+
+1584629743 d:\github\railway\railway management system\include\train.h
 	<iostream>
 
-1584463608 d:\github\railway\railway management system\include\functions.h
-	<Station.h>
+1584628998 source:d:\github\railway\railway management system\src\train.cpp
+	"Train.h"
 

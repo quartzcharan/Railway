@@ -1,7 +1,7 @@
 #include<iostream>
 #ifndef STATION_H
 #define STATION_H
-#define MAXCONN 2
+#include<Train.h>
 
 
 class Station
@@ -13,12 +13,16 @@ class Station
         std::string Getlocation() { return location; }
         void Setlocation(std::string val) { location = val; }
 
-        Station *connection[MAXCONN];   //public for time being while I figure out how to make the connections nicely
+        void setTrain(Train *t, int ind) { trainArr[ind] = t; }
+        Train getTrain(int i) { return *trainArr[i]; }
+
+
 
     protected:
 
     private:
-        std::string location;
+        std::string location;   //location of train; used in trie
+        Train *trainArr[3];
 };
 
 #endif // STATION_H
