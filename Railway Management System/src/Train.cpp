@@ -7,7 +7,7 @@ Train::Train() : trainID(totalTrains+1), capacity(5)
         stArr[i] = "";
         deptTime[i] = -1;
         arrTime[i] = -1;
-        seatsRemaining[i] = 5;
+        seatsRemaining[i] = capacity;
     }
 }
 

@@ -16,14 +16,13 @@ class Station
         void setTrain(Train *t, int ind) { trainArr[ind] = t; totalTrains++; }
         Train getTrain(int i) { return *trainArr[i]; }
         int getTotalTrains() { return totalTrains;}
-
+        Train *trainArr[3];
 
 
     protected:
 
     private:
         std::string location;   //location of train; used in trie
-        Train *trainArr[3];
         int totalTrains;
 };
 
