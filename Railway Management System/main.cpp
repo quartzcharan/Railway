@@ -4,8 +4,7 @@ using namespace std;
 
 int main()
 {
-    Train t1;
-    createTrains(&t1);
+    createTrains();
     buyTicket();
     buyTicket();
     buyTicket();
