@@ -7,9 +7,9 @@ using namespace std;
 Station s1("Chittagong"), s2("Dhaka"), s3("Khulna");
 
 
-void createTrains ()
+void createTrains (Train *t)
 {
-    Train *t;                       //train-1 of route chittagong-dhaka-khulna
+                          //train-1 of route chittagong-dhaka-khulna
 
     t->setStation("Chittagong", 0);
     t->setStation("Dhaka", 1);
@@ -22,6 +22,17 @@ void createTrains ()
 
     s1.setTrain(t, 0);             //t stops at chittagong and dhaka station to pick up passengers
     s2.setTrain(t, 0);
+
+
+    /*Train *t2;
+
+    t2->setStation("Dhaka", 0);
+    t2->setStation("Chittagong", 1);
+
+    t2->setDeptTime(8, 0);
+    t2->setArrTime(10, 1);
+
+    s2.setTrain(t2, 1);*/
 }
 
 
@@ -116,7 +127,7 @@ void buyTicket()             //user input for buying tickets
     cin>>a;
     cout<<"To: ";
     cin>>b;
-    cout<<"Passengers: ";
+    cout<<"Number of passengers: ";
     cin>>passengers;
     cout<<endl;
     findTrains(a, b, passengers);
