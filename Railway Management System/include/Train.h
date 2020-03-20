@@ -17,6 +17,8 @@ class Train
         int getCapacity () { return capacity; }
         void setSeatsRemaining (int i, int ind) { seatsRemaining[ind] = i; }
         int getSeatsRemaining (int i) { return seatsRemaining[i]; }
+        void setTotalStations (int i) { totalStations = i; }
+        int getTotalStations() { return totalStations; }
 
     protected:
 
@@ -28,6 +30,7 @@ class Train
         static int totalTrains;
         int capacity;
         int seatsRemaining[5];
+        int totalStations;
 };
 
 #endif // TRAIN_H

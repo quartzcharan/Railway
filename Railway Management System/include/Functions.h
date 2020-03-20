@@ -6,14 +6,19 @@ using namespace std;
 
 Station s1("Chittagong"), s2("Dhaka"), s3("Khulna");
 
+Train train1;                      //train-1 of route chittagong-dhaka-khulna
+Train *t = &train1;
 
-void createTrains (Train *t)
+Train train2;                      //train-2 of route dhaka-chittagong
+Train *t2 = &train2;
+
+
+void createTrains ()
 {
-                          //train-1 of route chittagong-dhaka-khulna
-
     t->setStation("Chittagong", 0);
     t->setStation("Dhaka", 1);
     t->setStation("Khulna", 2);
+    t->setTotalStations(3);
 
     t->setDeptTime(11, 0);
     t->setArrTime(12, 1);
@@ -24,15 +29,14 @@ void createTrains (Train *t)
     s2.setTrain(t, 0);
 
 
-    /*Train *t2;
-
     t2->setStation("Dhaka", 0);
     t2->setStation("Chittagong", 1);
+    t2->setTotalStations(2);
 
     t2->setDeptTime(8, 0);
     t2->setArrTime(10, 1);
 
-    s2.setTrain(t2, 1);*/
+    s2.setTrain(t2, 1);
 }
 
 
@@ -41,7 +45,7 @@ void findTrains (string from, string to, int seatsToBeIssued)     //search for a
     Station *A;
     Station B;
     Train tempTrain;
-    int departure, arrival, trainFound, onBoard, selectedTrain;
+    int departure, arrival, trainFound, onBoard, selectedTrain, trainValid;
 
     if(s1.Getlocation() == from)              //A and B are the stations the passenger wants to travel in between
         A = &s1;
@@ -50,12 +54,15 @@ void findTrains (string from, string to, int seatsToBeIssued)     //search for a
     else if(s3.Getlocation() == from)
         A = &s3;
 
+    trainFound = 0;
+    //cout<<A->getTotalTrains()<<endl;
     for(int i=0; i<A->getTotalTrains(); i++)  //look for trains that will take passengers from station A
     {
-        trainFound = 0, onBoard = 0;
+        trainValid = 0, onBoard = 0;
         tempTrain = A->getTrain(i);
+        //cout<<tempTrain.getTrainID()<<endl;
 
-        for(int j=0; j<3; j++)                //find trains that have the destination station on its route
+        for(int j=0; j<tempTrain.getTotalStations(); j++)                //find trains that have the destination station on its route
         {
             if(tempTrain.getStation(j) == from)
             {
@@ -63,9 +70,9 @@ void findTrains (string from, string to, int seatsToBeIssued)     //search for a
                 onBoard = 1;
             }
 
-            else if(tempTrain.getStation(j) == to)
+            else if(onBoard == 1 && tempTrain.getStation(j) == to)
             {
-                trainFound = 1;
+                trainValid = 1;
                 B.Setlocation(tempTrain.getStation(j)); //assign destination station to B
                 arrival = tempTrain.getArrTime(j);      //get arrival time
                 break;
@@ -75,8 +82,11 @@ void findTrains (string from, string to, int seatsToBeIssued)     //search for a
                 break;               //the train won't be valid if it doesn't have enough seats
         }
 
-        if(trainFound == 1)         //print details of the trains that are available
+        if(trainValid == 1)         //print details of the trains that are available
+        {
+            trainFound = 1;
             cout<<"ID: "<<tempTrain.getTrainID()<<"   Departure Station: "<<A->Getlocation()<<"   Departure Time: "<<departure<<"   Arrival Station: "<<B.Getlocation()<<"   Arrival Time: "<<arrival<<endl<<endl;
+        }
     }
 
     if(trainFound == 0)
