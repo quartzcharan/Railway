@@ -1,73 +1,26 @@
 # depslib dependency file v1.0
-1584630140 source:d:\github\railway\railway management system\main.cpp
+1584771216 source:c:\users\a. khan\desktop\test\main.cpp
 	<iostream>
-	<Functions.h>
+	<StationTree.h>
+	<ProgramFunctions.h>
 
-1584628734 source:d:\github\railway\railway management system\src\station.cpp
-	<iostream>
+1584724596 source:c:\users\a. khan\desktop\test\src\station.cpp
 	"Station.h"
-	"Train.h"
 
-1584628848 d:\github\railway\railway management system\include\station.h
+1584804739 c:\users\a. khan\desktop\test\include\station.h
 	<iostream>
 	<Train.h>
 
-1584630576 d:\github\railway\railway management system\include\functions.h
+1584726211 source:c:\users\a. khan\desktop\test\src\train.cpp
+	"Train.h"
+
+1584804643 c:\users\a. khan\desktop\test\include\train.h
 	<iostream>
+
+1584724319 c:\users\a. khan\desktop\test\include\stationtree.h
 	<Station.h>
+
+1584771335 c:\users\a. khan\desktop\test\include\programfunctions.h
 	<Train.h>
-
-1584629743 d:\github\railway\railway management system\include\train.h
-	<iostream>
-
-1584628998 source:d:\github\railway\railway management system\src\train.cpp
-	"Train.h"
-
-1584637339 source:c:\users\user\desktop\railway management system\main.cpp
-	<iostream>
-	<Functions.h>
-
-1584638128 c:\users\user\desktop\railway management system\include\functions.h
-	<iostream>
 	<Station.h>
-	<Train.h>
-
-1584638119 c:\users\user\desktop\railway management system\include\station.h
-	<iostream>
-	<Train.h>
-
-1584635844 c:\users\user\desktop\railway management system\include\train.h
-	<iostream>
-
-1584628736 source:c:\users\user\desktop\railway management system\src\station.cpp
-	<iostream>
-	"Station.h"
-	"Train.h"
-
-1584629000 source:c:\users\user\desktop\railway management system\src\train.cpp
-	"Train.h"
-
-1584628736 source:c:\users\user\desktop\github\railway\railway management system\src\station.cpp
-	<iostream>
-	"Station.h"
-	"Train.h"
-
-1584649524 c:\users\user\desktop\github\railway\railway management system\include\station.h
-	<iostream>
-	<Train.h>
-
-1584729618 c:\users\user\desktop\github\railway\railway management system\include\train.h
-	<iostream>
-
-1584728905 source:c:\users\user\desktop\github\railway\railway management system\src\train.cpp
-	"Train.h"
-
-1584731317 source:c:\users\user\desktop\github\railway\railway management system\main.cpp
-	<iostream>
-	<Functions.h>
-
-1584731387 c:\users\user\desktop\github\railway\railway management system\include\functions.h
-	<iostream>
-	<Station.h>
-	<Train.h>
 
