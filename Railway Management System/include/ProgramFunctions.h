@@ -35,11 +35,23 @@ void createTrain(int n, string stations[], int deptTimes[], int arrTimes[])
     }
 }
 
-void bookTicket(string dept, string arr, int passengers)    //search for available trains for routes selected by passengers
+void bookTicket()    //search for available trains for routes selected by passengers
 {
+    string dept, arr;
+    int passengers;
+    //getting user input
+    cout<<"\nEnter departure station name: ";
+    cin>>dept;
+    cout<<"Enter arrival station name: ";
+    cin>>arr;
+    cout<<"Enter number of passengers: ";
+    cin>>passengers;
+
     Train* validtrains[10];     //to store trains that are valid for this journey
     int validDeptIndexes[10];   //indexes inside each train at which the departure station lies; used to display departure times
     int validArrIndexes[10];    //same as above for arrival stations and arrival times
+    bool business[10];          //confirms that business class seats are available
+    bool economy[10];           //same as above for economy class seats
     Station *s = getStation(dept);  //retrieving departure station
     if (s == NULL)
     {
@@ -61,7 +73,7 @@ void bookTicket(string dept, string arr, int passengers)    //search for availab
         if (deptInd != -1 && arrInd != -1 && deptInd < arrInd)  //check if required number of seats are available from departure to arrival station
         {
             flag = 0;
-            for (int j=deptInd; j<arrInd; j++)  if (t->getSeatsRemaining(j) < passengers)   flag = 1;
+            for (int j=deptInd; j<arrInd; j++)  if (t->getSeatsRemainingEconomy(j) < passengers && t->getSeatsRemainingBusiness(j) < passengers)   flag = 1;
         }
         if (flag == 0)  //if everything is good, store train and the departure and arrival indexes so it can be displayed
         {
@@ -78,24 +90,61 @@ void bookTicket(string dept, string arr, int passengers)    //search for availab
         cout<<"There are no available trains."<<endl;
         return;
     }
-    cout<<"  Train ID\tDeparture\tArrival"<<endl;   //displaying valid trains
+    cout<<"Departure: "<<dept<<"\nArrival: "<<arr<<"\n\n"<<endl;   //displaying valid trains
     for (int j=0; j<k; j++)
     {
         cout<<j+1<<". ";
-        cout<<validtrains[j]->getID()<<"\t\t";
-        cout<<validtrains[j]->getDeptTime(validDeptIndexes[j])<<"\t\t";
-        cout<<validtrains[j]->getArrTime(validArrIndexes[j])<<endl;
+        cout<<"\nTrain ID: "<<validtrains[j]->getID();
+        cout<<"\nDeparture Time: "<<validtrains[j]->getDeptTime(validDeptIndexes[j]);
+        cout<<"\nArrival Time: "<<validtrains[j]->getArrTime(validArrIndexes[j]);
+        if (validtrains[j]->getSeatsRemainingBusiness(validDeptIndexes[j]) >= passengers)   //if business class seats are available
+        {
+            business[j] = 1;
+            cout<<"\nBusiness Class Ticket Price (Per Person): $$$";
+            cout<<"\n\tTotal Price ("<<passengers<<" passengers): $$$";
+        }
+        else    business[j] = 0;
+        if (validtrains[j]->getSeatsRemainingEconomy(validDeptIndexes[j]) >= passengers)    //if economy class seats are available
+        {
+            economy[j] = 1;
+            cout<<"\nEconomy Class Ticket Price (Per Person): $$";
+            cout<<"\n\tTotal Price ("<<passengers<<" passengers): $$";
+        }
+        else economy[j] = 0;
     }
-    cout<<"Please chose a train: "; //getting chosen train
-    int choice;
-    cin>>choice;
-
-    for (int j=validDeptIndexes[choice-1]; j<validArrIndexes[choice-1]; j++)    //changing available seats for chosen train
+    int choiceTrain = -1, choiceSeat = -1;
+    while (choiceTrain == -1 || choiceSeat == -1)
     {
-        int seats = validtrains[choice-1]->getSeatsRemaining(j);
-        validtrains[choice-1]->setSeatsRemaining(seats - passengers, j);
+        cout<<"\n\nPlease chose a train: "; //getting chosen train
+        cin>>choiceTrain;
+        if (choiceTrain < 1 || choiceTrain > k)
+        {
+            cout<<"Invalid choice."<<endl;
+            choiceTrain = -1;
+            continue;
+        }
+        if (business[choiceTrain-1] == 1 && economy[choiceTrain-1] == 1)    //getting chosen class
+        {
+            cout<<"\nPlease choose a ticket class:";
+            cout<<"\n1. Business Class\n2. Economy Class\nChoice: ";
+            cin>>choiceSeat;
+        }
+        else if (business[choiceTrain-1] == 1)  choiceSeat = 1; //or automatically assign if only one is available
+        else if (economy[choiceTrain-1] == 1)  choiceSeat = 2;
+        if (choiceSeat < 1 || choiceSeat > 2)
+        {
+            cout<<choiceSeat<<endl;
+            cout<<"Invalid choice."<<endl;
+            choiceSeat = -1;
+            continue;
+        }
     }
-    cout<<"Seats booked."<<endl;
+
+
+    for (int j=validDeptIndexes[choiceTrain-1]; j<validArrIndexes[choiceTrain-1]; j++)  validtrains[choiceTrain-1]->occupySeat(choiceSeat, passengers, j);
+    //changing available seats for chosen train
+
+    cout<<"\nSeats booked."<<endl;
 }
 
 void viewTimeTable (string str) //shows schedule for a particular station

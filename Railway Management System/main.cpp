@@ -22,7 +22,8 @@ void setup()
 int main()
 {
     setup();
-    bookTicket("dhaka", "khulna", 3);   //departure, arrival, passengers
-    bookTicket("dhaka", "khulna", 1);
+    bookTicket();
+    bookTicket();
+    bookTicket();
     viewTimeTable("dhaka");             //station name
 }

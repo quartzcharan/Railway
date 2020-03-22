@@ -15,23 +15,26 @@ class Train
         int getDeptTime (int i) { return deptTime[i]; }
         void setArrTime (int i, int ind) { arrTime[ind] = i; }
         int getArrTime (int i) { return arrTime[i]; }
-        void setCapacity (int i) { capacity = i; }
-        int getCapacity () { return capacity; }
-        void setSeatsRemaining (int i, int ind) { seatsRemaining[ind] = i; }
-        int getSeatsRemaining (int i) { return seatsRemaining[i]; }
-        //total stations attribute removed; not required
-
+        void setCapacityEconomy (int i) { capacityEconomy = i; }
+        int getCapacityEconomy () { return capacityEconomy; }
+        int getSeatsRemainingEconomy (int i) { return seatsRemainingEconomy[i]; }
+        void setCapacityBusiness (int i) { capacityBusiness = i; }
+        int getCapacityBusiness () { return capacityBusiness; }
+        int getSeatsRemainingBusiness (int i) { return seatsRemainingBusiness[i]; }
+        void occupySeat (int seatCategory, int seatNumber, int ind);
 
     protected:
 
     private:
         int id;
-        string station[3];
+        string station[5];
         int deptTime[5];
         int arrTime[5];
         static int totalTrains;
-        int capacity;
-        int seatsRemaining[5];
+        int capacityEconomy;
+        int capacityBusiness;
+        int seatsRemainingEconomy[5];
+        int seatsRemainingBusiness[5];
 };
 
 #endif // TRAIN_H
