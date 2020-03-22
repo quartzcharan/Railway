@@ -21,7 +21,10 @@ class Train
         void setCapacityBusiness (int i) { capacityBusiness = i; }
         int getCapacityBusiness () { return capacityBusiness; }
         int getSeatsRemainingBusiness (int i) { return seatsRemainingBusiness[i]; }
+        void setDistanceToNext (float i, int ind) { distanceToNext[ind] = i; }
         void occupySeat (int seatCategory, int seatNumber, int ind);
+        float getDistanceBetween (int dept, int arr);
+
 
     protected:
 
@@ -35,6 +38,7 @@ class Train
         int capacityBusiness;
         int seatsRemainingEconomy[5];
         int seatsRemainingBusiness[5];
+        float distanceToNext[5];    //to the next station that is
 };
 
 #endif // TRAIN_H

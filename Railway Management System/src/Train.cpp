@@ -10,6 +10,7 @@ Train::Train() : id(totalTrains+1), capacityEconomy(20), capacityBusiness(20)
         arrTime[i] = -1;
         seatsRemainingEconomy[i] = capacityEconomy;
         seatsRemainingBusiness[i] = capacityBusiness;
+        distanceToNext[i] = 0.0F;
     }
 }
 
@@ -21,4 +22,11 @@ void Train::occupySeat (int seatCategory, int passengers, int ind)  //decrements
     //business class
     else if (seatCategory == 2) seatsRemainingEconomy[ind] -= passengers;
     //economy class
+}
+
+float Train::getDistanceBetween (int dept, int arr)    //gets distance traveled between two stations
+{
+    float res = 0.0F;
+    for (int i=dept; i<arr; i++)    res += distanceToNext[i];
+    return res;
 }

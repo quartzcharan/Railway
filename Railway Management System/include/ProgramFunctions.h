@@ -1,6 +1,6 @@
 #include <Train.h>
 #include <Station.h>
-void createTrain(int n, string stations[], int deptTimes[], int arrTimes[])
+void createTrain(int n, string stations[], int deptTimes[], int arrTimes[], float distances[])
 {
     int ind[n] = {0};   //will store index at which to put the train at each station
     Station* s[n];      //pointers to the station
@@ -28,9 +28,10 @@ void createTrain(int n, string stations[], int deptTimes[], int arrTimes[])
     Train *t = new Train();
     for (int i=0; i<n; i++)
     {
-        t->setStation(stations[i], i);      //set station names, departure and arrival times for the train
+        t->setStation(stations[i], i);      //set station names, departure and arrival times and distances for the train
         t->setDeptTime(deptTimes[i], i);
         t->setArrTime(arrTimes[i], i);
+        t->setDistanceToNext(distances[i], i);
         s[i]->setTrain(t, ind[i]);          //train t stops at each station s at the first index at which there is space
     }
 }
@@ -100,15 +101,15 @@ void bookTicket()    //search for available trains for routes selected by passen
         if (validtrains[j]->getSeatsRemainingBusiness(validDeptIndexes[j]) >= passengers)   //if business class seats are available
         {
             business[j] = 1;
-            cout<<"\nBusiness Class Ticket Price (Per Person): $$$";
-            cout<<"\n\tTotal Price ("<<passengers<<" passengers): $$$";
+            cout<<"\nBusiness Class Ticket Price (Per Person): BDT "<<2*(validtrains[j]->getDistanceBetween(validDeptIndexes[j], validArrIndexes[j]));
+            cout<<"\n\tTotal Price ("<<passengers<<" passengers): BDT "<<passengers*2*(validtrains[j]->getDistanceBetween(validDeptIndexes[j], validArrIndexes[j]));
         }
         else    business[j] = 0;
         if (validtrains[j]->getSeatsRemainingEconomy(validDeptIndexes[j]) >= passengers)    //if economy class seats are available
         {
             economy[j] = 1;
-            cout<<"\nEconomy Class Ticket Price (Per Person): $$";
-            cout<<"\n\tTotal Price ("<<passengers<<" passengers): $$";
+            cout<<"\nEconomy Class Ticket Price (Per Person): BDT "<<(validtrains[j]->getDistanceBetween(validDeptIndexes[j], validArrIndexes[j]));
+            cout<<"\n\tTotal Price ("<<passengers<<" passengers): BDT "<<passengers*(validtrains[j]->getDistanceBetween(validDeptIndexes[j], validArrIndexes[j]));
         }
         else economy[j] = 0;
     }

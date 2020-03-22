@@ -12,11 +12,13 @@ void setup()
     string stations1[3] = {"chittagong", "dhaka", "khulna"};
     int deptTimes1[3] = {11, 13, -1};
     int arrTimes1[3] = {-1, 12, 14};
-    createTrain(3, stations1, deptTimes1, arrTimes1);  //train-1 of route chittagong-dhaka-khulna
+    float distances1[3] = {10.0F, 20.5F, -1.0F};
+    createTrain(3, stations1, deptTimes1, arrTimes1, distances1);  //train-1 of route chittagong-dhaka-khulna
     string stations2[2] = {"dhaka", "chittagong"};
     int deptTimes2[2] = {10, -1};
     int arrTimes2[2] = {-1, 11};
-    createTrain(2, stations2, deptTimes2, arrTimes2);   //train-2 of route dhaka-chittagong
+    float distances2[2] = {10.0F, -1.0F};
+    createTrain(2, stations2, deptTimes2, arrTimes2, distances2);   //train-2 of route dhaka-chittagong
 }
 
 int main()
