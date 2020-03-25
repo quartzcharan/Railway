@@ -5,7 +5,7 @@
 #include <fstream>
 using namespace std;
 
-void createTrain(int n, string stations[], int deptTimes[], int arrTimes[], float distances[])
+void createTrain(int n, string stations[], string deptTimes[], string arrTimes[], float distances[])
 {
     int ind[n] = {0};   //will store index at which to put the train at each station
     Station* s[n];      //pointers to the station
@@ -20,6 +20,14 @@ void createTrain(int n, string stations[], int deptTimes[], int arrTimes[], floa
         Train *t = s[i]->getTrain(ind[i]);
         while (t != NULL && ind[i] < 3) //finding first non-NULL spot in ith station
         {
+            for (int j=0; j<3; j++)
+            {
+                if (t->getStation(j) == s[i]->getLocation())        //when station is found in trains directory, show ID and times
+                {
+                    if(t->getArrTime(j) == arrTimes[i] || t->getDeptTime(j) == deptTimes[i])
+                        cout<<"Invalid time at station "<<s[i]->getLocation()<<endl;
+                }
+            }
             ind[i]++;
             t = s[i]->getTrain(ind[i]);
         }
@@ -53,7 +61,8 @@ void setup()    //sets up all the stations and trains for the program to use
         cout<<"Unable to open file 'Stations.txt'.\nSetup failed.\nExiting Program.\n"<<endl;
         exit(1);
     }
-    while (getline(openFile, str))  createStation(str); //creating each of the stations
+    while (getline(openFile, str))
+        createStation(str); //creating each of the stations
 
     openFile.close();   //done with stations
 
@@ -68,8 +77,8 @@ void setup()    //sets up all the stations and trains for the program to use
         openFile>>num;              //number of stations associated with train
         getline(openFile, str);     //go to next line
         string stations[num];       //storing everything to pass to createTrain function
-        int deptTimes[num];
-        int arrTimes[num];
+        string deptTimes[num];
+        string arrTimes[num];
         float dist[num];
         for (int i=0; i<num; i++)   //storing station names
         {
@@ -121,18 +130,23 @@ void bookTicket()    //search for available trains for routes selected by passen
     Train *t = s->getTrain(i);  //each train from departure station being retrieved in turn
     while (t != NULL && i<3)    //while trains are available and i<3 (max number of trains in each station)
     {
-        if (k == 10)    break;  //maximum number of options given to user
+        if (k == 10)
+            break;  //maximum number of options given to user
         int deptInd = -1, arrInd = -1;  //index for departure and arrival stations for ith train
         for (int j=0; j<3; j++) //for each station in the trains list
         {
-            if (t->getStation(j) == dept) deptInd = j;  //departure station found
-            if (t->getStation(j) == arr)  arrInd = j;   //arrival station found
+            if (t->getStation(j) == dept)
+                deptInd = j;  //departure station found
+            if (t->getStation(j) == arr)
+                arrInd = j;   //arrival station found
         }
         int flag = -1;
         if (deptInd != -1 && arrInd != -1 && deptInd < arrInd)  //check if required number of seats are available from departure to arrival station
         {
             flag = 0;
-            for (int j=deptInd; j<arrInd; j++)  if (t->getSeatsRemainingEconomy(j) < passengers && t->getSeatsRemainingBusiness(j) < passengers)   flag = 1;
+            for (int j=deptInd; j<arrInd; j++)
+                if (t->getSeatsRemainingEconomy(j) < passengers && t->getSeatsRemainingBusiness(j) < passengers)
+                    flag = 1;
         }
         if (flag == 0)  //if everything is good, store train and the departure and arrival indexes so it can be displayed
         {
@@ -162,14 +176,16 @@ void bookTicket()    //search for available trains for routes selected by passen
             cout<<"\nBusiness Class Ticket Price (Per Person): BDT "<<2*(validtrains[j]->getDistanceBetween(validDeptIndexes[j], validArrIndexes[j]));
             cout<<"\n\tTotal Price ("<<passengers<<" passengers): BDT "<<passengers*2*(validtrains[j]->getDistanceBetween(validDeptIndexes[j], validArrIndexes[j]));
         }
-        else    business[j] = 0;
+        else
+            business[j] = 0;
         if (validtrains[j]->getSeatsRemainingEconomy(validDeptIndexes[j]) >= passengers)    //if economy class seats are available
         {
             economy[j] = 1;
             cout<<"\nEconomy Class Ticket Price (Per Person): BDT "<<(validtrains[j]->getDistanceBetween(validDeptIndexes[j], validArrIndexes[j]));
             cout<<"\n\tTotal Price ("<<passengers<<" passengers): BDT "<<passengers*(validtrains[j]->getDistanceBetween(validDeptIndexes[j], validArrIndexes[j]));
         }
-        else economy[j] = 0;
+        else
+            economy[j] = 0;
     }
     int choiceTrain = -1, choiceSeat = -1;
     while (choiceTrain == -1 || choiceSeat == -1)
@@ -188,8 +204,10 @@ void bookTicket()    //search for available trains for routes selected by passen
             cout<<"\n1. Business Class\n2. Economy Class\nChoice: ";
             cin>>choiceSeat;
         }
-        else if (business[choiceTrain-1] == 1)  choiceSeat = 1; //or automatically assign if only one is available
-        else if (economy[choiceTrain-1] == 1)  choiceSeat = 2;
+        else if (business[choiceTrain-1] == 1)
+            choiceSeat = 1; //or automatically assign if only one is available
+        else if (economy[choiceTrain-1] == 1)
+            choiceSeat = 2;
         if (choiceSeat < 1 || choiceSeat > 2)
         {
             cout<<choiceSeat<<endl;
@@ -200,7 +218,8 @@ void bookTicket()    //search for available trains for routes selected by passen
     }
 
 
-    for (int j=validDeptIndexes[choiceTrain-1]; j<validArrIndexes[choiceTrain-1]; j++)  validtrains[choiceTrain-1]->occupySeat(choiceSeat, passengers, j);
+    for (int j=validDeptIndexes[choiceTrain-1]; j<validArrIndexes[choiceTrain-1]; j++)
+        validtrains[choiceTrain-1]->occupySeat(choiceSeat, passengers, j);
     //changing available seats for chosen train
 
     cout<<"\nSeats booked."<<endl;

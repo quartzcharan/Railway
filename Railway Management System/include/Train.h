@@ -11,10 +11,10 @@ class Train
         int getID() { return id; }
         void setStation (string str, int i) { station[i] = str; }
         string getStation (int i) { return station[i]; }
-        void setDeptTime (int i, int ind) { deptTime[ind] = i; }
-        int getDeptTime (int i) { return deptTime[i]; }
-        void setArrTime (int i, int ind) { arrTime[ind] = i; }
-        int getArrTime (int i) { return arrTime[i]; }
+        void setDeptTime (string i, int ind) { deptTime[ind] = i; }
+        string getDeptTime (int ind) { return deptTime[ind]; }
+        void setArrTime (string i, int ind) { arrTime[ind] = i; }
+        string getArrTime (int ind) { return arrTime[ind]; }
         void setCapacityEconomy (int i) { capacityEconomy = i; }
         int getCapacityEconomy () { return capacityEconomy; }
         int getSeatsRemainingEconomy (int i) { return seatsRemainingEconomy[i]; }
@@ -31,8 +31,8 @@ class Train
     private:
         int id;
         string station[5];
-        int deptTime[5];
-        int arrTime[5];
+        string deptTime[5];
+        string arrTime[5];
         static int totalTrains;
         int capacityEconomy;
         int capacityBusiness;
