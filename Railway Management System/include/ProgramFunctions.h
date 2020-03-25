@@ -25,7 +25,10 @@ void createTrain(int n, string stations[], string deptTimes[], string arrTimes[]
                 if (t->getStation(j) == s[i]->getLocation())        //when station is found in trains directory, show ID and times
                 {
                     if(t->getArrTime(j) == arrTimes[i] || t->getDeptTime(j) == deptTimes[i])
+                    {
                         cout<<"Invalid time at station "<<s[i]->getLocation()<<endl;
+                        return;
+                    }
                 }
             }
             ind[i]++;
