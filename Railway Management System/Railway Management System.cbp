@@ -7,7 +7,7 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/test" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Debug/Railway Management System" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -17,7 +17,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/test" prefix_auto="1" extension_auto="1" />
+				<Option output="bin/Release/Railway Management System" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
@@ -34,17 +34,20 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="include/ProgramFunctions.h" />
+		<Unit filename="StationTree.cpp" />
+		<Unit filename="StationTree.h" />
+		<Unit filename="include/Administrator.h" />
+		<Unit filename="include/Customer.h" />
 		<Unit filename="include/Station.h" />
-		<Unit filename="include/StationTree.h" />
 		<Unit filename="include/Train.h" />
+		<Unit filename="include/User.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Administrator.cpp" />
+		<Unit filename="src/Customer.cpp" />
 		<Unit filename="src/Station.cpp" />
 		<Unit filename="src/Train.cpp" />
+		<Unit filename="src/User.cpp" />
 		<Extensions>
-			<code_completion />
-			<envvars />
-			<debugger />
 			<lib_finder disable_auto="1" />
 		</Extensions>
 	</Project>

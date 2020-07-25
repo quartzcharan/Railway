@@ -19,7 +19,7 @@ int Train::totalTrains = 0;
 void Train::occupySeat (int seatCategory, int passengers, int ind)  //decrements available seats at an index
 {
     if (seatCategory == 1)  seatsRemainingBusiness[ind] -= passengers;
-    //business class
+        //business class
     else if (seatCategory == 2) seatsRemainingEconomy[ind] -= passengers;
     //economy class
 }

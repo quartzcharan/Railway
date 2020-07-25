@@ -4,6 +4,7 @@
 using namespace std;
 
 
+
 class Train
 {
     public:
@@ -24,7 +25,6 @@ class Train
         void setDistanceToNext (float i, int ind) { distanceToNext[ind] = i; }
         void occupySeat (int seatCategory, int seatNumber, int ind);
         float getDistanceBetween (int dept, int arr);
-
 
     protected:
 
