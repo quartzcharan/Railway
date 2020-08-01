@@ -10,10 +10,12 @@ class User
 public:
     User();
     void viewTimeTable ();
+    void setName (string str) { name = str;}
 
 protected:
 
 private:
+    string name;
 };
 
 #endif // USER_

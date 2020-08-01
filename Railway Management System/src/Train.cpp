@@ -1,6 +1,6 @@
 #include "Train.h"
 
-Train::Train() : id(totalTrains+1), capacityEconomy(20), capacityBusiness(20)
+Train::Train() : id(totalTrains+1)
 {
     totalTrains++;
     for (int i=0; i<5; i++)
@@ -8,8 +8,8 @@ Train::Train() : id(totalTrains+1), capacityEconomy(20), capacityBusiness(20)
         station[i] = "";
         deptTime[i] = -1;
         arrTime[i] = -1;
-        seatsRemainingEconomy[i] = capacityEconomy;
-        seatsRemainingBusiness[i] = capacityBusiness;
+        seatsRemainingEconomy[i] = 20;
+        seatsRemainingBusiness[i] = 20;
         distanceToNext[i] = 0.0F;
     }
 }

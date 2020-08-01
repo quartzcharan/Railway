@@ -11,11 +11,11 @@ class Customer : public User
 public:
     Customer();
     void bookTicket();
+    void setPhoneNum (string str) { phoneNum = str;}
 
 protected:
 
 private:
-    string username;
     string phoneNum;
 };
 
