@@ -2,12 +2,63 @@
 #include "Administrator.h"
 #include "Customer.h"
 #include "User.h"
+#include <fstream>
 
 using namespace std;
 
+void setup()    //sets up all the stations and trains for the program to use
+{
+    fstream openFile;   //will store station and train files
+    string str;         //store lines being read from files
+    int num;            //stores integer numbers
+    Administrator temp; // temporary object to create Station and Train objects
+
+    openFile.open("\Stations.txt"); //working with stations
+    if (!openFile)                  //problem reading file; must stop program
+    {
+        cout<<"Unable to open file 'Stations.txt'.\nSetup failed.\nExiting Program.\n"<<endl;
+        exit(1);
+    }
+    while (getline(openFile, str))  temp.createStation(str); //creating each of the stations
+
+    openFile.close();   //done with stations
+
+    openFile.open("\Trains.txt");   //working with trains
+    if (!openFile)  //problem reading file; must stop program
+    {
+        cout<<"Unable to open file 'Trains.txt'.\nSetup failed.\nExiting Program.\n"<<endl;
+        exit(1);
+    }
+    while (getline(openFile, str))  //creating each of the trains
+    {
+        openFile >> num;            //number of stations associated with train
+        openFile.ignore(1, '\n');   // go to next line
+
+        string stations[num];       //storing everything to pass to createTrain function
+        string deptTimes[num];
+        string arrTimes[num];
+        float dist[num];
+
+        for (int i=0; i<num; i++)   openFile >> stations[i];    //storing station names
+        openFile.ignore(1, '\n');
+
+        for (int i=0; i<num; i++)   openFile >> deptTimes[i];   //storing departure times
+        openFile.ignore(1, '\n');
+
+        for (int i=0; i<num; i++)   openFile >> arrTimes[i];    //storing arrival times
+        openFile.ignore(1, '\n');
+
+        for (int i=0; i<num; i++)   openFile >> dist[i];        //storing distance
+        openFile.ignore(1, '\n');
+        openFile.ignore(1, '\n');
+
+        temp.createTrain(num, stations, deptTimes, arrTimes, dist);  //creating train
+    }
+}
+
 int main()
 {
-    Administrator::setup();
+    setup();
 
     int choice;
 

@@ -10,7 +10,8 @@ class Administrator : public User
 {
 public:
     Administrator();
-    static void setup();
+    void createStation (string str);
+    void createTrain(int n, string stations[], string deptTimes[], string arrTimes[], float distances[]);
 
 protected:
 
@@ -18,9 +19,6 @@ private:
     int adminId;
     static int adminCount;
     string pass;
-
-    static void createStation (string str);
-    static void createTrain(int n, string stations[], string deptTimes[], string arrTimes[], float distances[]);
 };
 
 #endif // ADMINISTRATOR_

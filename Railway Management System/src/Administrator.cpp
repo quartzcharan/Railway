@@ -1,6 +1,5 @@
 #include "Administrator.h"
 #include "../StationTree.h"
-#include <fstream>
 
 
 Administrator::Administrator() : adminId(adminCount+1), pass("")
@@ -69,59 +68,5 @@ void Administrator::createTrain(int n, string stations[], string deptTimes[], st
         t->setArrTime(arrTimes[i], i);
         t->setDistanceToNext(distances[i], i);
         s[i]->setTrain(t, ind[i]);          //train t stops at each station s at the first index at which there is space
-    }
-}
-
-void Administrator::setup()    //sets up all the stations and trains for the program to use
-{
-    fstream openFile;   //will store station and train files
-    string str;         //store lines being read from files
-    int num;            //stores integer numbers
-
-    openFile.open("\Stations.txt"); //working with stations
-    if (!openFile)                  //problem reading file; must stop program
-    {
-        cout<<"Unable to open file 'Stations.txt'.\nSetup failed.\nExiting Program.\n"<<endl;
-        exit(1);
-    }
-    while (getline(openFile, str))
-        createStation(str); //creating each of the stations
-
-    openFile.close();   //done with stations
-
-    openFile.open("\Trains.txt");   //working with trains
-    if (!openFile)  //problem reading file; must stop program
-    {
-        cout<<"Unable to open file 'Trains.txt'.\nSetup failed.\nExiting Program.\n"<<endl;
-        exit(1);
-    }
-    while (getline(openFile, str))  //creating each of the trains
-    {
-        openFile>>num;              //number of stations associated with train
-        getline(openFile, str);     //go to next line
-        string stations[num];       //storing everything to pass to createTrain function
-        string deptTimes[num];
-        string arrTimes[num];
-        float dist[num];
-        for (int i=0; i<num; i++)   //storing station names
-        {
-            getline(openFile, stations[i]);
-        }
-        for (int i=0; i<num; i++)   //storing departure times
-        {
-            openFile>>deptTimes[i];
-            getline(openFile, str);
-        }
-        for (int i=0; i<num; i++)   //storing arrival times
-        {
-            openFile>>arrTimes[i];
-            getline(openFile, str);
-        }
-        for (int i=0; i<num; i++)   //storing distance
-        {
-            openFile>>dist[i];
-            getline(openFile, str);
-        }
-        createTrain(num, stations, deptTimes, arrTimes, dist);  //creating train
     }
 }
