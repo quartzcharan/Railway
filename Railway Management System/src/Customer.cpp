@@ -2,6 +2,7 @@
 #include "../StationTree.h"
 #include "Train.h"
 #include "Station.h"
+#define MAXSUGGESTIONS 10   // maximum number of results user is shown
 
 Customer::Customer() : phoneNum("")
 {
@@ -21,11 +22,11 @@ void Customer::bookTicket()    //search for available trains for routes selected
     cout<<"  Enter number of passengers: ";
     cin>>passengers;
 
-    Train* validtrains[10];     //to store trains that are valid for this journey
-    int validDeptIndexes[10];   //indexes inside each train at which the departure station lies; used to display departure times
-    int validArrIndexes[10];    //same as above for arrival stations and arrival times
-    bool business[10];          //confirms that business class seats are available
-    bool economy[10];           //same as above for economy class seats
+    Train* validtrains[MAXSUGGESTIONS];     //to store trains that are valid for this journey
+    int validDeptIndexes[MAXSUGGESTIONS];   //indexes inside each train at which the departure station lies; used to display departure times
+    int validArrIndexes[MAXSUGGESTIONS];    //same as above for arrival stations and arrival times
+    bool business[MAXSUGGESTIONS];          //confirms that business class seats are available
+    bool economy[MAXSUGGESTIONS];           //same as above for economy class seats
     Station *s = getStation(dept);  //retrieving departure station
     if (s == NULL)
     {
@@ -36,25 +37,21 @@ void Customer::bookTicket()    //search for available trains for routes selected
     }
     int i = 0, k = 0;
     Train *t = s->getTrain(i);  //each train from departure station being retrieved in turn
-    while (t != NULL && i<3)    //while trains are available and i<3 (max number of trains in each station)
+    while (t != NULL && i<MAXTRAINS)    //while trains are available and station capacity not exceeded
     {
-        if (k == 10)
-            break;  //maximum number of options given to user
+        if (k == MAXSUGGESTIONS)    break;  //maximum number of options given to user
         int deptInd = -1, arrInd = -1;  //index for departure and arrival stations for ith train
-        for (int j=0; j<3; j++) //for each station in the trains list
+        for (int j=0; j<MAXSTATIONS; j++) //for each station in the trains list
         {
-            if (t->getStation(j) == dept)
-                deptInd = j;  //departure station found
-            if (t->getStation(j) == arr)
-                arrInd = j;   //arrival station found
+            if (t->getStation(j) == dept)   deptInd = j;  //departure station found
+            if (t->getStation(j) == arr)    arrInd = j;   //arrival station found
         }
         int flag = -1;
         if (deptInd != -1 && arrInd != -1 && deptInd < arrInd)  //check if required number of seats are available from departure to arrival station
         {
             flag = 0;
             for (int j=deptInd; j<arrInd; j++)
-                if (t->getSeatsRemainingEconomy(j) < passengers && t->getSeatsRemainingBusiness(j) < passengers)
-                    flag = 1;
+                if (t->getSeatsRemainingEconomy(j) < passengers && t->getSeatsRemainingBusiness(j) < passengers)    flag = 1;
         }
         if (flag == 0)  //if everything is good, store train and the departure and arrival indexes so it can be displayed
         {
@@ -115,10 +112,8 @@ void Customer::bookTicket()    //search for available trains for routes selected
             cout<<"\n  1. Business Class\n  2. Economy Class\n  Choice: ";
             cin>>choiceSeat;
         }
-        else if (business[choiceTrain-1] == 1)
-            choiceSeat = 1; //or automatically assign if only one is available
-        else if (economy[choiceTrain-1] == 1)
-            choiceSeat = 2;
+        else if (business[choiceTrain-1] == 1)  choiceSeat = 1; //or automatically assign if only one is available
+        else if (economy[choiceTrain-1] == 1)   choiceSeat = 2;
         if (choiceSeat < 1 || choiceSeat > 2)
         {
             cout<<choiceSeat<<endl;

@@ -37,9 +37,9 @@ void Administrator::createTrain(int n, string stations[], string deptTimes[], st
             return;
         }
         Train *t = s[i]->getTrain(ind[i]);
-        while (t != NULL && ind[i] < 3) //finding first non-NULL spot in ith station
+        while (t != NULL && ind[i] < MAXSTATIONS) //finding first non-NULL spot in ith station
         {
-            for (int j=0; j<3; j++)
+            for (int j=0; j<MAXSTATIONS; j++)
             {
                 if (t->getStation(j) == s[i]->getLocation())        //when station is found in trains directory, show ID and times
                 {
@@ -53,7 +53,7 @@ void Administrator::createTrain(int n, string stations[], string deptTimes[], st
             ind[i]++;
             t = s[i]->getTrain(ind[i]);
         }
-        if (ind[i] == 3)    //station has no space; cannot continue program
+        if (ind[i] == MAXSTATIONS)    //station has no space; cannot continue program
         {
             cout<<"Unable to add train to "<<s[i]->getLocation()<<" station."<<endl;
             return;

@@ -2,6 +2,7 @@
 #define TRAIN_H
 #include <iostream>
 using namespace std;
+#define MAXSTATIONS 5    // maximum number of stations a train a visit
 
 
 
@@ -26,13 +27,13 @@ class Train
 
     private:
         int id;
-        string station[5];
-        string deptTime[5];
-        string arrTime[5];
+        string station[MAXSTATIONS];
+        string deptTime[MAXSTATIONS];
+        string arrTime[MAXSTATIONS];
         static int totalTrains;
-        int seatsRemainingEconomy[5];
-        int seatsRemainingBusiness[5];
-        float distanceToNext[5];    //to the next station that is
+        int seatsRemainingEconomy[MAXSTATIONS];
+        int seatsRemainingBusiness[MAXSTATIONS];
+        float distanceToNext[MAXSTATIONS];    //to the next station that is
 };
 
 #endif // TRAIN_H

@@ -2,5 +2,5 @@
 
 Station::Station() : location("")
 {
-    for (int i=0; i<3; i++) t[i] = NULL;
+    for (int i=0; i<MAXTRAINS; i++) t[i] = NULL;
 }

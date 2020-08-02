@@ -26,7 +26,7 @@ void User::viewTimeTable () //shows schedule for a particular station
     cout<<"  Train ID\tArrival\tDeparture"<<endl;   //showing each train until NULL
     while (t != NULL)
     {
-        for (int j=0; j<3; j++)
+        for (int j=0; j<MAXSTATIONS; j++)
         {
             if (t->getStation(j) == str)        //when station is found in trains directory, show ID and times
             {

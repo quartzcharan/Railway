@@ -1,5 +1,6 @@
 #ifndef STATION_H
 #define STATION_H
+#define MAXTRAINS 3  // maximum number of trains a station can hold at once
 #include "Train.h"
 #include <iostream>
 using namespace std;
@@ -18,7 +19,7 @@ protected:
 
 private:
     string location;    //location of train; used in trie
-    Train *t[3];
+    Train *t[MAXTRAINS];
 };
 
 #endif // STATION_H
