@@ -19,7 +19,7 @@ void setup()    //sets up all the stations and trains for the program to use
         cout<<"Unable to open file 'Stations.txt'.\nSetup failed.\nExiting Program.\n"<<endl;
         exit(1);
     }
-    while (getline(openFile, str))  temp.createStation(str); //creating each of the stations
+    while (getline(openFile, str))  temp.createStation(str, 1); //creating each of the stations
 
     openFile.close();   //done with stations
 
@@ -52,7 +52,7 @@ void setup()    //sets up all the stations and trains for the program to use
         openFile.ignore(1, '\n');
         openFile.ignore(1, '\n');
 
-        temp.createTrain(num, stations, deptTimes, arrTimes, dist);  //creating train
+        temp.createTrain(num, stations, deptTimes, arrTimes, dist, 1);  //creating train
     }
 }
 
@@ -79,8 +79,13 @@ int main()
             cout<<"  3. View bookings [UNIMPLEMENTED]\n  4. View Station Timetable\n  Choice: ";
             cin>>userChoice;
 
-            if (userChoice == 1)    continue;
-            else if (userChoice == 2)   continue;
+            if (userChoice == 1)    user->createStation("", 0);
+            else if (userChoice == 2)
+            {
+                string tempStringArray[] = {""};
+                float tempFloatArray[] = {0.0F};
+                user->createTrain(-1, tempStringArray, tempStringArray, tempStringArray, tempFloatArray, 0);
+            }
             else if (userChoice == 3)   continue;
             else if (userChoice == 4)   user->viewTimeTable();
         }

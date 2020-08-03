@@ -74,7 +74,7 @@ void Customer::bookTicket()    //search for available trains for routes selected
     cout<<"  Departure: "<<dept<<"\n  Arrival: "<<arr<<"\n\n"<<endl;   //displaying valid trains
     for (int j=0; j<k; j++)
     {
-        cout<<"  "<<j+1<<". ";
+        cout<<"\n  "<<j+1<<". ";
         cout<<"\n  Train ID: "<<validtrains[j]->getID();
         cout<<"\n  Departure Time: "<<validtrains[j]->getDeptTime(validDeptIndexes[j]);
         cout<<"\n  Arrival Time: "<<validtrains[j]->getArrTime(validArrIndexes[j]);

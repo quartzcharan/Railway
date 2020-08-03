@@ -2,16 +2,16 @@
 #define ADMINISTRATOR_H
 
 #include "User.h"
+#include <fstream>
 #include <iostream>
 using namespace std;
-
 
 class Administrator : public User
 {
 public:
     Administrator();
-    void createStation (string str);
-    void createTrain(int n, string stations[], string deptTimes[], string arrTimes[], float distances[]);
+    void createStation (string str, int mode);
+    void createTrain(int n, string stations[], string deptTimes[], string arrTimes[], float distances[], int mode);
 
 protected:
 

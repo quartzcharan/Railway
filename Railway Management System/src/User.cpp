@@ -23,6 +23,12 @@ void User::viewTimeTable () //shows schedule for a particular station
     }
     int i = 0;
     Train *t = s->getTrain(i);
+    if (t == NULL)
+    {
+        cout<<"  Schedule empty.\n  ";
+        system("Pause");
+        return;
+    }
     cout<<"  Train ID\tArrival\tDeparture"<<endl;   //showing each train until NULL
     while (t != NULL)
     {
