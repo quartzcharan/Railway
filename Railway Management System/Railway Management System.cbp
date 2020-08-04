@@ -39,12 +39,14 @@
 		<Unit filename="include/Administrator.h" />
 		<Unit filename="include/Customer.h" />
 		<Unit filename="include/Station.h" />
+		<Unit filename="include/Ticket.h" />
 		<Unit filename="include/Train.h" />
 		<Unit filename="include/User.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Administrator.cpp" />
 		<Unit filename="src/Customer.cpp" />
 		<Unit filename="src/Station.cpp" />
+		<Unit filename="src/Ticket.cpp" />
 		<Unit filename="src/Train.cpp" />
 		<Unit filename="src/User.cpp" />
 		<Extensions>

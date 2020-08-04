@@ -2,6 +2,7 @@
 #include "../StationTree.h"
 #include "Train.h"
 #include "Station.h"
+#include "Ticket.h"
 #define MAXSUGGESTIONS 10   // maximum number of results user is shown
 
 Customer::Customer() : phoneNum("")
@@ -124,10 +125,14 @@ void Customer::bookTicket()    //search for available trains for routes selected
     }
 
 
-    for (int j=validDeptIndexes[choiceTrain-1]; j<validArrIndexes[choiceTrain-1]; j++)
-        validtrains[choiceTrain-1]->occupySeat(choiceSeat, passengers, j);
+    //for (int j=validDeptIndexes[choiceTrain-1]; j<validArrIndexes[choiceTrain-1]; j++)
+    //    validtrains[choiceTrain-1]->occupySeat(choiceSeat, passengers, j);
     //changing available seats for chosen train
     // shift this look to Ticket class
+
+    Ticket tempTicket(dept, validDeptIndexes[choiceTrain-1], validArrIndexes[choiceTrain-1], validtrains[choiceTrain-1]->getID(), choiceSeat, passengers);
+    tempTicket.bookSeats();
+    tempTicket.store();
 
     cout<<"\n  Seats booked."<<endl;
     cout<<"  ";

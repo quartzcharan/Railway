@@ -2,6 +2,7 @@
 #include "Administrator.h"
 #include "Customer.h"
 #include "User.h"
+#include "Ticket.h"
 #include <fstream>
 
 using namespace std;
@@ -54,6 +55,27 @@ void setup()    //sets up all the stations and trains for the program to use
 
         temp.createTrain(num, stations, deptTimes, arrTimes, dist, 1);  //creating train
     }
+    openFile.close();
+
+    openFile.open("\Tickets.dat");
+    if (!openFile)                  //problem reading file; must stop program
+    {
+        cout<<"Unable to open file 'Tickets.dat'.\nSetup failed.\nExiting Program.\n"<<endl;
+        exit(1);
+    }
+
+    string dept;
+    int deptInd, arrInd, trainID, seatCategory, seats;
+    while (getline(openFile, str))
+    {
+        openFile>>dept>>deptInd>>arrInd>>trainID>>seatCategory>>seats;
+        Ticket tempTicket(dept, deptInd, arrInd, trainID, seatCategory, seats);
+        tempTicket.bookSeats();
+        openFile.ignore(1, '\n');
+        openFile.ignore(1, '\n');
+    }
+    cout<<"####"<<endl;
+    openFile.close();
 }
 
 int main()
