@@ -57,25 +57,8 @@ void setup()    //sets up all the stations and trains for the program to use
     }
     openFile.close();
 
-    openFile.open("\Tickets.dat");
-    if (!openFile)                  //problem reading file; must stop program
-    {
-        cout<<"Unable to open file 'Tickets.dat'.\nSetup failed.\nExiting Program.\n"<<endl;
-        exit(1);
-    }
-
-    string dept;
-    int deptInd, arrInd, trainID, seatCategory, seats;
-    while (getline(openFile, str))
-    {
-        openFile>>dept>>deptInd>>arrInd>>trainID>>seatCategory>>seats;
-        Ticket tempTicket(dept, deptInd, arrInd, trainID, seatCategory, seats);
-        tempTicket.bookSeats();
-        openFile.ignore(1, '\n');
-        openFile.ignore(1, '\n');
-    }
-    cout<<"####"<<endl;
-    openFile.close();
+    Ticket tempTicket;
+    tempTicket.read();
 }
 
 int main()
@@ -116,11 +99,12 @@ int main()
             system("CLS");
             Customer* user = new Customer();
             cout<<endl;
-            cout<<"  1. Book a ticket\n  2. View Station Timetable\n  Choice: ";
+            cout<<"  1. Book a ticket\n  2. View Ticket\n  3. View Station Timetable\n  Choice: ";
             cin>>userChoice;
 
             if (userChoice == 1)    user->bookTicket();
-            else if (userChoice == 2)   user->viewTimeTable();
+            else if (userChoice == 2)   user->viewTicket();
+            else if (userChoice == 3)   user->viewTimeTable();
         }
     }
 }

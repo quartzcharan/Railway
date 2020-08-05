@@ -13,19 +13,22 @@ class Ticket
 {
     public:
         Ticket();
-        Ticket(string dept, int deptPnt, int arrPnt, int tid, int seatCat, int passengers);
+        Ticket(string custName, string custNum, string dept, int deptPnt, int arrPnt, int tid, int seatCat, int passengers);
         void store();
+        void read(int mode=0, string custName="", string custNum="");
         void bookSeats();
+
+    protected:
+
+    private:
         int deptInd;
         int arrInd;
         int trainID;
         int seatCategory;
         int seats;
-        string departure;
-
-    protected:
-
-    private:
+        char departure[30];
+        char name[30];
+        char number[30];
 
 };
 

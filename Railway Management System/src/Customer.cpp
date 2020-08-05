@@ -72,8 +72,9 @@ void Customer::bookTicket()    //search for available trains for routes selected
         return;
     }
     system("CLS");
-    cout<<"  Departure: "<<dept<<"\n  Arrival: "<<arr<<"\n\n"<<endl;   //displaying valid trains
-    for (int j=0; j<k; j++)
+    cout<<"  Departure: "<<dept<<"\n  Arrival: "<<arr<<"\n\n"<<endl;
+
+    for (int j=0; j<k; j++) //displaying valid trains
     {
         cout<<"\n  "<<j+1<<". ";
         cout<<"\n  Train ID: "<<validtrains[j]->getID();
@@ -110,7 +111,7 @@ void Customer::bookTicket()    //search for available trains for routes selected
         if (business[choiceTrain-1] == 1 && economy[choiceTrain-1] == 1)    //getting chosen class
         {
             cout<<"\n  Please choose a ticket class:";
-            cout<<"\n  1. Business Class\n  2. Economy Class\n  Choice: ";
+            cout<<"\n  1. Business Class\n  2. Economy Class\n\n  Choice: ";
             cin>>choiceSeat;
         }
         else if (business[choiceTrain-1] == 1)  choiceSeat = 1; //or automatically assign if only one is available
@@ -124,17 +125,31 @@ void Customer::bookTicket()    //search for available trains for routes selected
         }
     }
 
+    string custName, custPhNum;
+    cout<<"\n  Please enter your name and phone number to confirm the booking.\n  Name: ";
+    cin>>custName;
+    cout<<"  Phone Number: ";
+    cin>>custPhNum;
 
-    //for (int j=validDeptIndexes[choiceTrain-1]; j<validArrIndexes[choiceTrain-1]; j++)
-    //    validtrains[choiceTrain-1]->occupySeat(choiceSeat, passengers, j);
-    //changing available seats for chosen train
-    // shift this look to Ticket class
-
-    Ticket tempTicket(dept, validDeptIndexes[choiceTrain-1], validArrIndexes[choiceTrain-1], validtrains[choiceTrain-1]->getID(), choiceSeat, passengers);
+    Ticket tempTicket(custName, custPhNum, dept, validDeptIndexes[choiceTrain-1], validArrIndexes[choiceTrain-1], validtrains[choiceTrain-1]->getID(), choiceSeat, passengers);
     tempTicket.bookSeats();
     tempTicket.store();
 
     cout<<"\n  Seats booked."<<endl;
     cout<<"  ";
     system("PAUSE");
+}
+
+void Customer::viewTicket()
+{
+    string custName, custPhNum;
+    system("CLS");
+    cout<<"  Please enter your name and phone number to view the booking.\n  Name: ";
+    cin>>custName;
+    cout<<"  Phone Number: ";
+    cin>>custPhNum;
+    Ticket tempTicket;
+    tempTicket.read(1, custName, custPhNum);
+    cout<<"  ";
+    system("Pause");
 }
