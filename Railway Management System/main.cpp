@@ -93,6 +93,7 @@ int main()
             }
             else if (userChoice == 3)   continue;
             else if (userChoice == 4)   user->viewTimeTable();
+            delete user;
         }
         else if (choice == 2)
         {
@@ -105,6 +106,7 @@ int main()
             if (userChoice == 1)    user->bookTicket();
             else if (userChoice == 2)   user->viewTicket();
             else if (userChoice == 3)   user->viewTimeTable();
+            delete user;
         }
     }
 }

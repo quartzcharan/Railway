@@ -47,16 +47,20 @@ void Ticket::read(int mode, string custName, string custNum)
 {
     ifstream openFile;
     openFile.open("\Tickets.dat", ios::in|ios::binary);
-    if (!openFile)
+    if (!openFile && mode == 1)
     {
         cout<<"Unable to open file 'Tickets.dat'.\n"<<endl;
         system("PAUSE");
         return;
     }
+    else if (!openFile)
+    {
+        cout<<"Unable to open file 'Stations.txt'.\nSetup failed.\nExiting Program.\n"<<endl;
+        exit(1);
+    }
     openFile.read((char*)this, sizeof(*this));
     while (!openFile.eof())
     {
-        //cout<<departure<<deptInd<<arrInd<<trainID<<seatCategory<<seats<<endl;
         if (mode == 0)  this->bookSeats();
         if (mode == 1 && name == custName && number == custNum)
         {

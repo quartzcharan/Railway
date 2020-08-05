@@ -132,5 +132,10 @@ void Administrator::createTrain(int n, string stations[],string deptTimes[], str
         openFile<<endl;
         openFile<<endl;
         openFile.close();
+
+        delete stations;
+        delete deptTimes;
+        delete arrTimes;
+        delete distances;
     }
 }
