@@ -12,6 +12,7 @@ public:
     Administrator();
     void createStation (string str, int mode);
     void createTrain(int n, string stations[], string deptTimes[], string arrTimes[], float distances[], int mode);
+    void viewBooking();
 
 protected:
 

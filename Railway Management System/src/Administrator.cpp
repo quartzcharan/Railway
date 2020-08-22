@@ -149,3 +149,15 @@ void Administrator::createTrain(int n, string stations[],string deptTimes[], str
         delete distances;
     }
 }
+
+void Administrator::viewBooking()
+{
+    system("CLS");
+    cout<<endl;
+
+    int tid;
+    cout<<"  Please enter Train ID: ";
+    cin>>tid;
+
+    User::viewBooking("", "", tid, 2);
+}

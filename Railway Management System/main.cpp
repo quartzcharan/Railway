@@ -80,8 +80,8 @@ int main()
             system("CLS");
             Administrator* user = new Administrator();
             cout<<endl;
-            cout<<"  1. Add a station to database [UNIMPLEMENTED]\n  2. Add a train to database [UNIMPLEMENTED]\n";
-            cout<<"  3. View bookings [UNIMPLEMENTED]\n  4. View Station Timetable\n  Choice: ";
+            cout<<"  1. Add a station to database\n  2. Add a train to database\n";
+            cout<<"  3. View bookings\n  4. View Station Timetable\n  Choice: ";
             cin>>userChoice;
 
             if (userChoice == 1)    user->createStation("", 0);
@@ -91,7 +91,7 @@ int main()
                 float tempFloatArray[] = {0.0F};
                 user->createTrain(-1, tempStringArray, tempStringArray, tempStringArray, tempFloatArray, 0);
             }
-            else if (userChoice == 3)   continue;
+            else if (userChoice == 3)   user->viewBooking();
             else if (userChoice == 4)   user->viewTimeTable();
             delete user;
         }
@@ -104,7 +104,7 @@ int main()
             cin>>userChoice;
 
             if (userChoice == 1)    user->bookTicket();
-            else if (userChoice == 2)   user->viewTicket();
+            else if (userChoice == 2)   user->viewBooking();
             else if (userChoice == 3)   user->viewTimeTable();
             delete user;
         }

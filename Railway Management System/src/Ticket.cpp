@@ -44,11 +44,11 @@ void Ticket::bookSeats()
     }
 }
 
-void Ticket::read(int mode, string custName, string custNum)
+void Ticket::read(int mode, string custName, string custNum, int tid)
 {
     ifstream openFile;
     openFile.open("\Tickets.dat", ios::in|ios::binary);
-    if (!openFile && mode == 1)
+    if (!openFile && (mode == 1 || mode == 2))
     {
         cout<<"  Unable to open file 'Tickets.dat'.\n"<<endl;
         cout<<"  ";
@@ -64,7 +64,7 @@ void Ticket::read(int mode, string custName, string custNum)
     while (!openFile.eof())
     {
         if (mode == 0)  this->bookSeats();
-        if (mode == 1 && name == custName && number == custNum)
+        if ((mode == 1 && name == custName && number == custNum) || (mode == 2 && trainID == tid))
         {
             string arrSt, deptTime, arrTime;
             float distance;
@@ -89,8 +89,6 @@ void Ticket::read(int mode, string custName, string custNum)
             }
             else if (seatCategory == 2) seatCat = "Economy";
 
-            system("CLS");
-            cout<<endl;
             cout<<"  Name: "<<name<<"\n  Phone Number: "<<number<<"\n  Train ID: "<<trainID;
             cout<<"\n  Departure Point: "<<departure<<"          \tArrival Point: "<<arrSt;
             cout<<"\n  Departure Time: "<<deptTime<<"          \tArrival Time: "<<arrTime;

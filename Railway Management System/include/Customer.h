@@ -11,7 +11,7 @@ class Customer : public User
 public:
     Customer();
     void bookTicket();
-    void viewTicket();
+    void viewBooking();
     void setPhoneNum (string str) { phoneNum = str;}
 
 protected:

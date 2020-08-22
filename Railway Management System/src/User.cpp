@@ -51,3 +51,14 @@ void User::viewTimeTable () //shows schedule for a particular station
     cout<<"  ";
     system("PAUSE");
 }
+
+void User::viewBooking(string custName, string custNum, int tid, int mode)
+{
+    Ticket tempTicket;
+    cout<<endl;
+    tempTicket.read(mode, custName, custNum, tid);
+    cout<<"  ";
+    system("Pause");
+
+
+}

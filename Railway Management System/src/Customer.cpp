@@ -140,7 +140,7 @@ void Customer::bookTicket()    //search for available trains for routes selected
     system("PAUSE");
 }
 
-void Customer::viewTicket()
+void Customer::viewBooking()
 {
     string custName, custPhNum;
     system("CLS");
@@ -149,8 +149,5 @@ void Customer::viewTicket()
     cin>>custName;
     cout<<"  Phone Number: ";
     cin>>custPhNum;
-    Ticket tempTicket;
-    tempTicket.read(1, custName, custPhNum);
-    cout<<"  ";
-    system("Pause");
+    User::viewBooking(custName, custPhNum, -1, 1);
 }
