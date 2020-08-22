@@ -144,6 +144,7 @@ void Customer::viewTicket()
 {
     string custName, custPhNum;
     system("CLS");
+    cout<<endl;
     cout<<"  Please enter your name and phone number to view the booking.\n  Name: ";
     cin>>custName;
     cout<<"  Phone Number: ";

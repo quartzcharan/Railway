@@ -29,7 +29,7 @@ void User::viewTimeTable () //shows schedule for a particular station
         system("Pause");
         return;
     }
-    cout<<"  Train ID\tArrival\tDeparture"<<endl;   //showing each train until NULL
+    cout<<"      ID"<<"  Arrival"<<"  Departure"<<endl;   //showing each train until NULL
     while (t != NULL)
     {
         for (int j=0; j<MAXSTATIONS; j++)
@@ -37,9 +37,11 @@ void User::viewTimeTable () //shows schedule for a particular station
             if (t->getStation(j) == str)        //when station is found in trains directory, show ID and times
             {
                 cout<<"  "<<i+1<<". ";
-                cout<<t->getID()<<"\t\t";
-                cout<<t->getArrTime(j)<<"\t";
-                cout<<t->getDeptTime(j)<<endl;
+                cout<<setfill('0')<<setw(3)<<t->getID()<<"  ";
+                if (t->getArrTime(j) == "-1")   cout<<setfill(' ')<<setw(7)<<"Start"<<"  ";
+                else    cout<<setfill(' ')<<setw(7)<<t->getArrTime(j)<<"  ";
+                if (t->getDeptTime(j) == "-1")  cout<<setw(9)<<"End"<<endl;
+                else    cout<<setw(9)<<t->getDeptTime(j)<<endl;
             }
         }
         i++;

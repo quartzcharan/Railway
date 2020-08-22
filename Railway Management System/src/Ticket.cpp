@@ -90,6 +90,7 @@ void Ticket::read(int mode, string custName, string custNum)
             else if (seatCategory == 2) seatCat = "Economy";
 
             system("CLS");
+            cout<<endl;
             cout<<"  Name: "<<name<<"\n  Phone Number: "<<number<<"\n  Train ID: "<<trainID;
             cout<<"\n  Departure Point: "<<departure<<"          \tArrival Point: "<<arrSt;
             cout<<"\n  Departure Time: "<<deptTime<<"          \tArrival Time: "<<arrTime;
