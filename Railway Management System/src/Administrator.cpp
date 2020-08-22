@@ -12,14 +12,17 @@ int Administrator::adminCount = 0;
 
 void Administrator::createStation (string str, int mode)     //creating a new station
 {
+    system("CLS");
+    cout<<endl;
     if (mode == 0)
     {
-        cout<<"Enter station name: ";
+        cout<<"  Enter station name: ";
         cin>>str;
     }
     if (getStation(str) != NULL)           //possible that station already created
     {
-        cout<<"Station already exists."<<endl;
+        cout<<"  Station already exists."<<endl;
+        cout<<"  ";
         system("PAUSE");
         return;
     }
@@ -34,7 +37,8 @@ void Administrator::createStation (string str, int mode)     //creating a new st
         openFile.open("\Stations.txt", ios_base::app);
         if (!openFile)  //problem reading file; return to main menu
         {
-            cout<<"Unable to open file 'Stations.txt'.\n"<<endl;
+            cout<<"  Unable to open file 'Stations.txt'.\n"<<endl;
+            cout<<"  ";
             system("PAUSE");
             return;
         }
@@ -45,21 +49,23 @@ void Administrator::createStation (string str, int mode)     //creating a new st
 
 void Administrator::createTrain(int n, string stations[],string deptTimes[], string arrTimes[], float distances[], int mode)
 {
+    system("CLS");
+    cout<<endl;
     if (mode == 0)
     {
-        cout<<"Enter number of stations train will pass through: ";
+        cout<<"  Enter number of stations train will pass through: ";
         cin>>n;
         stations = new string[n];
         deptTimes = new string[n];
         arrTimes = new string[n];
         distances = new float[n];
-        cout<<"Enter station names: ";
+        cout<<"  Enter station names: ";
         for (int i=0; i<n; i++) cin>>stations[i];
-        cout<<"Enter departure times: ";
+        cout<<"  Enter departure times: ";
         for (int i=0; i<n; i++) cin>>deptTimes[i];
-        cout<<"Enter arrival times: ";
+        cout<<"  Enter arrival times: ";
         for (int i=0; i<n; i++) cin>>arrTimes[i];
-        cout<<"Enter distances: ";
+        cout<<"  Enter distances: ";
         for (int i=0; i<n; i++) cin>>distances[i];
     }
 
@@ -70,7 +76,8 @@ void Administrator::createTrain(int n, string stations[],string deptTimes[], str
         s[i] = getStation(stations[i]); //retrieving ith station
         if (s[i] == NULL)
         {
-            cout<<stations[i]<<" is not a valid station name."<<endl;
+            cout<<"  "<<stations[i]<<" is not a valid station name."<<endl;
+            cout<<"  ";
             system("PAUSE");
             return;
         }
@@ -83,7 +90,8 @@ void Administrator::createTrain(int n, string stations[],string deptTimes[], str
                 {
                     if((t->getArrTime(j) == arrTimes[i] && arrTimes[i] != "-1") || (t->getDeptTime(j) == deptTimes[i] && deptTimes[i] != "-1"))
                     {
-                        cout<<"Invalid time at station "<<s[i]->getLocation()<<endl;
+                        cout<<"  Invalid time at station "<<s[i]->getLocation()<<endl;
+                        cout<<"  ";
                         system("PAUSE");
                         return;
                     }
@@ -94,7 +102,8 @@ void Administrator::createTrain(int n, string stations[],string deptTimes[], str
         }
         if (ind[i] == MAXSTATIONS)    //station has no space; cannot continue program
         {
-            cout<<"Unable to add train to "<<s[i]->getLocation()<<" station."<<endl;
+            cout<<"  Unable to add train to "<<s[i]->getLocation()<<" station."<<endl;
+            cout<<"  ";
             system("PAUSE");
             return;
         }
@@ -116,7 +125,8 @@ void Administrator::createTrain(int n, string stations[],string deptTimes[], str
         openFile.open("\Trains.txt", ios_base::app);
         if (!openFile)  //problem reading file; return to main menu
         {
-            cout<<"Unable to open file 'Trains.txt'.\n"<<endl;
+            cout<<"  Unable to open file 'Trains.txt'.\n"<<endl;
+            cout<<"  ";
             system("PAUSE");
             return;
         }

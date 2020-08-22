@@ -22,7 +22,8 @@ void Ticket::store()
     openFile.open("\Tickets.dat", ios::app|ios::binary);
     if (!openFile)  //problem reading file; return to main menu
     {
-        cout<<"Unable to open file 'Tickets.dat'.\n"<<endl;
+        cout<<"  Unable to open file 'Tickets.dat'.\n"<<endl;
+        cout<<"  ";
         system("PAUSE");
         return;
     }
@@ -49,13 +50,14 @@ void Ticket::read(int mode, string custName, string custNum)
     openFile.open("\Tickets.dat", ios::in|ios::binary);
     if (!openFile && mode == 1)
     {
-        cout<<"Unable to open file 'Tickets.dat'.\n"<<endl;
+        cout<<"  Unable to open file 'Tickets.dat'.\n"<<endl;
+        cout<<"  ";
         system("PAUSE");
         return;
     }
     else if (!openFile)
     {
-        cout<<"Unable to open file 'Stations.txt'.\nSetup failed.\nExiting Program.\n"<<endl;
+        cout<<"  Unable to open file 'Stations.txt'.\n  Setup failed.\n  Exiting Program.\n"<<endl;
         exit(1);
     }
     openFile.read((char*)this, sizeof(*this));

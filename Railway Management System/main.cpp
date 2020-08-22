@@ -17,7 +17,7 @@ void setup()    //sets up all the stations and trains for the program to use
     openFile.open("\Stations.txt"); //working with stations
     if (!openFile)                  //problem reading file; must stop program
     {
-        cout<<"Unable to open file 'Stations.txt'.\nSetup failed.\nExiting Program.\n"<<endl;
+        cout<<"  Unable to open file 'Stations.txt'.\n  Setup failed.\n  Exiting Program.\n"<<endl;
         exit(1);
     }
     while (getline(openFile, str))  temp.createStation(str, 1); //creating each of the stations
@@ -27,7 +27,7 @@ void setup()    //sets up all the stations and trains for the program to use
     openFile.open("\Trains.txt");   //working with trains
     if (!openFile)  //problem reading file; must stop program
     {
-        cout<<"Unable to open file 'Trains.txt'.\nSetup failed.\nExiting Program.\n"<<endl;
+        cout<<"  Unable to open file 'Trains.txt'.\n  Setup failed.\n  Exiting Program.\n"<<endl;
         exit(1);
     }
     while (getline(openFile, str))  //creating each of the trains
