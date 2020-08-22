@@ -43,7 +43,8 @@ void User::viewTimeTable () //shows schedule for a particular station
             }
         }
         i++;
-        t = s->getTrain(i);
+        if (i < MAXTRAINS)  t = s->getTrain(i); // while in range
+        else    break;
     }
     cout<<"  ";
     system("PAUSE");
