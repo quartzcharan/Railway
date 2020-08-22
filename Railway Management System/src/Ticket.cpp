@@ -61,6 +61,8 @@ void Ticket::read(int mode, string custName, string custNum, int tid)
         exit(1);
     }
     openFile.read((char*)this, sizeof(*this));
+
+    int noResultFlag = 1;
     while (!openFile.eof())
     {
         if (mode == 0)  this->bookSeats();
@@ -94,8 +96,10 @@ void Ticket::read(int mode, string custName, string custNum, int tid)
             cout<<"\n  Departure Time: "<<deptTime<<"          \tArrival Time: "<<arrTime;
             cout<<"\n  Seat Category: "<<seatCat<<"\n  Total Seats: "<<seats;
             cout<<"\n  Total Cost: BDT "<<distance*seats<<"\n"<<endl;
+            noResultFlag = 0;
         }
         openFile.read((char*)this, sizeof(*this));
     }
+    if (noResultFlag)  cout<<"  No available bookings.\n"<<endl;
     openFile.close();
 }
