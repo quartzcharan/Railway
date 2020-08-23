@@ -27,11 +27,6 @@ void Administrator::createStation (string str, int mode)     //creating a new st
         system("PAUSE");    // wait to allow user to see message
         return;
     }
-    else
-    {
-        Station* newStation = new Station();    // allocate memory for new station object
-        addStation(str, newStation);    // add station to trie
-    }
     if (mode == 0)  // manual entry means new station (not in file)
     {
         fstream openFile;
@@ -46,6 +41,9 @@ void Administrator::createStation (string str, int mode)     //creating a new st
         openFile<<str<<endl;    // add station name to file
         openFile.close();
     }
+
+    Station* newStation = new Station();    // allocate memory for new station object
+    addStation(str, newStation);    // add station to trie
 }
 
 void Administrator::createTrain(int n, string stations[],string deptTimes[], string arrTimes[], float distances[], int mode)    // creating a new train
@@ -110,16 +108,6 @@ void Administrator::createTrain(int n, string stations[],string deptTimes[], str
         }
     }
 
-    Train *t = new Train(); // allocate memory to new train object
-    for (int i=0; i<n; i++)
-    {
-        t->setStation(stations[i], i);      //set station names, departure and arrival times and distances for the train
-        t->setDeptTime(deptTimes[i], i);
-        t->setArrTime(arrTimes[i], i);
-        t->setDistanceToNext(distances[i], i);
-        s[i]->setTrain(t, ind[i]);          //train t stops at each station s at the first index at which there is space
-    }
-
     if (mode == 0)  // for manual entry, add details of train to file
     {
         fstream openFile;
@@ -148,6 +136,16 @@ void Administrator::createTrain(int n, string stations[],string deptTimes[], str
         delete deptTimes;
         delete arrTimes;
         delete distances;
+    }
+
+    Train *t = new Train(); // allocate memory to new train object
+    for (int i=0; i<n; i++)
+    {
+        t->setStation(stations[i], i);      //set station names, departure and arrival times and distances for the train
+        t->setDeptTime(deptTimes[i], i);
+        t->setArrTime(arrTimes[i], i);
+        t->setDistanceToNext(distances[i], i);
+        s[i]->setTrain(t, ind[i]);          //train t stops at each station s at the first index at which there is space
     }
 }
 

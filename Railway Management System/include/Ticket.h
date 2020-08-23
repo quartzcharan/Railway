@@ -14,7 +14,7 @@ class Ticket
     public:
         Ticket();
         Ticket(string custName, string custNum, string dept, int deptPnt, int arrPnt, int tid, int seatCat, int passengers);
-        void store();
+        int store();
         void read(int mode=0, string custName="", string custNum="", int tid=-1);
         void bookSeats();
 

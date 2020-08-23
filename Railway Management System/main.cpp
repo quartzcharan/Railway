@@ -102,7 +102,7 @@ int main()
             cout<<endl; // leave a line gap on top
 
             Customer* user = new Customer();    // creating Customer
-            cout<<"  1. Book a ticket\n  2. View Ticket\n  3. View Station Timetable\n  Choice: ";  //showing customer choices
+            cout<<"  1. Book a ticket\n  2. View Booking\n  3. View Station Timetable\n  Choice: ";  //showing customer choices
             cin>>userChoice;
 
             if (userChoice == 1)    user->bookTicket(); // make a new booking

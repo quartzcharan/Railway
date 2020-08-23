@@ -16,7 +16,7 @@ Ticket::Ticket(string custName, string custNum, string dept, int deptPnt, int ar
     strncpy(number, custNum.c_str(), sizeof(number));
 }
 
-void Ticket::store()
+int Ticket::store()
 {
     fstream openFile;
     openFile.open("\Tickets.dat", ios::app|ios::binary);    // append and binary mode
@@ -25,10 +25,11 @@ void Ticket::store()
         cout<<"  Unable to open file 'Tickets.dat'.\n"<<endl;
         cout<<"  ";
         system("PAUSE");    // wait for use to read message
-        return; // return to main menu
+        return 0; // return to main menu
     }
     openFile.write((char*)this, sizeof(*this)); // write object to file
     openFile.close();
+    return 1;
 }
 
 void Ticket::bookSeats()    // books seats on the train
@@ -58,7 +59,7 @@ void Ticket::read(int mode, string custName, string custNum, int tid)   // read 
     }
     else if (!openFile) // error for auto mode
     {
-        cout<<"  Unable to open file 'Stations.txt'.\n  Setup failed.\n  Exiting Program.\n"<<endl;
+        cout<<"  Unable to open file 'Tickets.dat'.\n  Setup failed.\n  Exiting Program.\n"<<endl;
         exit(1);    // could not setup program properly; must exit
     }
     openFile.read((char*)this, sizeof(*this));  // read an object

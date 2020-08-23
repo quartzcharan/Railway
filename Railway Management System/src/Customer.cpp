@@ -139,12 +139,13 @@ void Customer::bookTicket()    //search for available trains for routes selected
     cin>>custPhNum;
 
     Ticket tempTicket(custName, custPhNum, dept, validDeptIndexes[choiceTrain-1], validArrIndexes[choiceTrain-1], validtrains[choiceTrain-1]->getID(), choiceSeat, passengers);
-    tempTicket.bookSeats(); // books seats in the train
-    tempTicket.store(); // stores booking information in external file
-
-    cout<<"\n  Seats booked."<<endl;    // confirm booking
-    cout<<"  ";
-    system("PAUSE");    // wait for user to read
+    if (tempTicket.store()) // successfully stored booking information in external file
+    {
+        tempTicket.bookSeats(); // books seats in the train
+        cout<<"\n  Seats booked."<<endl;    // confirm booking
+        cout<<"  ";
+        system("PAUSE");    // wait for user to read
+    }
 }
 
 void Customer::viewBooking()    // view booked tickets for particular customer; overloaded from parent
