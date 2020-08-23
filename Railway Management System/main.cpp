@@ -110,5 +110,6 @@ int main()
             else if (userChoice == 3)   user->viewTimeTable();  // view timetable for a station
             delete user;
         }
+        else if (choice == 3)   deleteTree();   // delete all station and train objects
     }
 }

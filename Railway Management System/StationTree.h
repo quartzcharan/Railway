@@ -17,4 +17,8 @@ struct node             //structure for each node
 Station* getStation (string str);
 void addStation (string str, Station* newStation);
 
+void clearStations(string stationName);
+void clearTrains(Station* temp);
+void deleteTree(node* x = NULL);
+
 #endif // STATIONTREE_H_INCLUDED
