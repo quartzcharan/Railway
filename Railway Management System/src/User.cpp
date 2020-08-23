@@ -1,7 +1,7 @@
 #include "User.h"
 #include "../StationTree.h"
 
-User::User(): name("")
+User::User(): name("")  // constructor
 {
 
 }
@@ -9,56 +9,57 @@ User::User(): name("")
 void User::viewTimeTable () //shows schedule for a particular station
 {
     string str;
-    system("CLS");
-    cout<<endl;
-    cout<<"  Enter Station Name: ";
+    system("CLS");  // clear screen
+    cout<<endl; // leave a line gap at top
+
+    cout<<"  Enter Station Name: "; // get station name as input
     cin>>str;
     Station *s = getStation(str);   //retrieve station
-    if (s == NULL)                  //station not found
+    if (s == NULL)                  //invalid input
     {
         cout<<"  No such station exists."<<endl;
         cout<<"  ";
-        system("PAUSE");
-        return;
+        system("PAUSE");    // wait for user to read message
+        return; // return to main menu
     }
     int i = 0;
-    Train *t = s->getTrain(i);
-    if (t == NULL)
+    Train *t = s->getTrain(i);  // retrieve each train in turn
+    if (t == NULL)  // if there are no trains
     {
         cout<<"  Schedule empty.\n  ";
-        system("Pause");
-        return;
+        system("Pause");    // wait for use to read message
+        return; // return to main menu
     }
-    cout<<"      ID"<<"  Arrival"<<"  Departure"<<endl;   //showing each train until NULL
-    while (t != NULL)
+    cout<<"      ID"<<"  Arrival"<<"  Departure"<<endl;   //headers for output
+    while (t != NULL)   // while trains are available
     {
-        for (int j=0; j<MAXSTATIONS; j++)
+        for (int j=0; j<MAXSTATIONS; j++)   // loop over each station in train's list to find index of valid one
         {
             if (t->getStation(j) == str)        //when station is found in trains directory, show ID and times
             {
-                cout<<"  "<<i+1<<". ";
-                cout<<setfill('0')<<setw(3)<<t->getID()<<"  ";
-                if (t->getArrTime(j) == "-1")   cout<<setfill(' ')<<setw(7)<<"Start"<<"  ";
+                cout<<"  "<<i+1<<". ";  // numbered list
+                cout<<setfill('0')<<setw(3)<<t->getID()<<"  ";  // using manipulator to display as three digit numbers
+
+                if (t->getArrTime(j) == "-1")   cout<<setfill(' ')<<setw(7)<<"Start"<<"  "; // starting station with no arrival time
                 else    cout<<setfill(' ')<<setw(7)<<t->getArrTime(j)<<"  ";
-                if (t->getDeptTime(j) == "-1")  cout<<setw(9)<<"End"<<endl;
+
+                if (t->getDeptTime(j) == "-1")  cout<<setw(9)<<"End"<<endl; // ending station with no departure time
                 else    cout<<setw(9)<<t->getDeptTime(j)<<endl;
             }
         }
-        i++;
+        i++;    // go to next train
         if (i < MAXTRAINS)  t = s->getTrain(i); // while in range
         else    break;
     }
     cout<<"  ";
-    system("PAUSE");
+    system("PAUSE");    // wait for user to read messages
 }
 
-void User::viewBooking(string custName, string custNum, int tid, int mode)
+void User::viewBooking(string custName, string custNum, int tid, int mode)  // function to show bookings; mode for administrator/customer
 {
-    Ticket tempTicket;
-    cout<<endl;
-    tempTicket.read(mode, custName, custNum, tid);
+    Ticket tempTicket;  // create Ticket object
+    cout<<endl; // leave a line gap
+    tempTicket.read(mode, custName, custNum, tid);  // call read function
     cout<<"  ";
-    system("Pause");
-
-
+    system("Pause");    // wait for user to read any messages
 }

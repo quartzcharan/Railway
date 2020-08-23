@@ -14,8 +14,11 @@ void Customer::bookTicket()    //search for available trains for routes selected
 {
     string dept, arr;
     int passengers;
+
+    system("CLS");  // clearing screen
+    cout<<endl; // leave a line gap at top
+
     //getting user input
-    system("CLS");
     cout<<"\n  Enter departure station name: ";
     cin>>dept;
     cout<<"  Enter arrival station name: ";
@@ -29,7 +32,7 @@ void Customer::bookTicket()    //search for available trains for routes selected
     bool business[MAXSUGGESTIONS];          //confirms that business class seats are available
     bool economy[MAXSUGGESTIONS];           //same as above for economy class seats
     Station *s = getStation(dept);  //retrieving departure station
-    if (s == NULL)
+    if (s == NULL)  // invalid departure point
     {
         cout<<"  Departure point invalid."<<endl;
         cout<<"  ";
@@ -47,62 +50,66 @@ void Customer::bookTicket()    //search for available trains for routes selected
             if (t->getStation(j) == dept)   deptInd = j;  //departure station found
             if (t->getStation(j) == arr)    arrInd = j;   //arrival station found
         }
-        int flag = -1;
+        int flag = -1;  // used to track that a valid train was found
         if (deptInd != -1 && arrInd != -1 && deptInd < arrInd)  //check if required number of seats are available from departure to arrival station
         {
-            flag = 0;
-            for (int j=deptInd; j<arrInd; j++)
-                if (t->getSeatsRemainingEconomy(j) < passengers && t->getSeatsRemainingBusiness(j) < passengers)    flag = 1;
+            flag = 0;   // valid for now
+            for (int j=deptInd; j<arrInd; j++)  // check seats available at each point
+                if (t->getSeatsRemainingEconomy(j) < passengers && t->getSeatsRemainingBusiness(j) < passengers)    flag = 1;   // not enough seats in either category, so becomes invalid
         }
         if (flag == 0)  //if everything is good, store train and the departure and arrival indexes so it can be displayed
         {
             validtrains[k] = t;
             validDeptIndexes[k] = deptInd;
             validArrIndexes[k] = arrInd;
-            k++;
+            k++;    // increment number of results found
         }
         i++;
-        t = s->getTrain(i);
+        t = s->getTrain(i); // get next train from this station
     }
     if (k == 0) //k will be 0 if no trains are found
     {
         cout<<"  There are no available trains."<<endl;
         cout<<"  ";
-        system("PAUSE");
-        return;
+        system("PAUSE");    // wait for user to see message
+        return; // return to main menu
     }
-    system("CLS");
-    cout<<"  Departure: "<<dept<<"\n  Arrival: "<<arr<<"\n\n"<<endl;
+
+    system("CLS");  // clear screen
+    cout<<endl; // leave a line gap at the top
+
+    cout<<"  Departure: "<<dept<<"\n  Arrival: "<<arr<<"\n\n"<<endl;    // heading for results
 
     for (int j=0; j<k; j++) //displaying valid trains
     {
-        cout<<"\n  "<<j+1<<". ";
+        cout<<"\n  "<<j+1<<". ";    // numbered ordered
         cout<<"\n  Train ID: "<<validtrains[j]->getID();
         cout<<"\n  Departure Time: "<<validtrains[j]->getDeptTime(validDeptIndexes[j]);
         cout<<"\n  Arrival Time: "<<validtrains[j]->getArrTime(validArrIndexes[j]);
+
         if (validtrains[j]->getSeatsRemainingBusiness(validDeptIndexes[j]) >= passengers)   //if business class seats are available
         {
-            business[j] = 1;
-            cout<<"\n  Business Class Ticket Price (Per Person): BDT "<<2*(validtrains[j]->getDistanceBetween(validDeptIndexes[j], validArrIndexes[j]));
+            business[j] = 1;    // indicate that business class available for this train
+            cout<<"\n  Business Class Ticket Price (Per Person): BDT "<<2*(validtrains[j]->getDistanceBetween(validDeptIndexes[j], validArrIndexes[j]));    // calculating price based on distance between departure and arrival points
             cout<<"\n\tTotal Price ("<<passengers<<" passengers): BDT "<<passengers*2*(validtrains[j]->getDistanceBetween(validDeptIndexes[j], validArrIndexes[j]));
         }
         else
-            business[j] = 0;
+            business[j] = 0;    // indicate that business class not available for this train
         if (validtrains[j]->getSeatsRemainingEconomy(validDeptIndexes[j]) >= passengers)    //if economy class seats are available
         {
-            economy[j] = 1;
-            cout<<"\n  Economy Class Ticket Price (Per Person): BDT "<<(validtrains[j]->getDistanceBetween(validDeptIndexes[j], validArrIndexes[j]));
+            economy[j] = 1; // indicate that economy class available for this train
+            cout<<"\n  Economy Class Ticket Price (Per Person): BDT "<<(validtrains[j]->getDistanceBetween(validDeptIndexes[j], validArrIndexes[j]));   // calculating price based on distance between departure and arrival points
             cout<<"\n\tTotal Price ("<<passengers<<" passengers): BDT "<<passengers*(validtrains[j]->getDistanceBetween(validDeptIndexes[j], validArrIndexes[j]));
         }
         else
-            economy[j] = 0;
+            economy[j] = 0; // indicate that economy class not available for this train
     }
-    int choiceTrain = -1, choiceSeat = -1;
-    while (choiceTrain == -1 || choiceSeat == -1)
+    int choiceTrain = -1, choiceSeat = -1;  // used to keep track of which train and which category user picks
+    while (choiceTrain == -1 || choiceSeat == -1)   // while invalid entries
     {
         cout<<"\n\n  Please chose a train: "; //getting chosen train
         cin>>choiceTrain;
-        if (choiceTrain < 1 || choiceTrain > k)
+        if (choiceTrain < 1 || choiceTrain > k) // invalid input
         {
             cout<<"  Invalid choice."<<endl;
             choiceTrain = -1;
@@ -116,7 +123,7 @@ void Customer::bookTicket()    //search for available trains for routes selected
         }
         else if (business[choiceTrain-1] == 1)  choiceSeat = 1; //or automatically assign if only one is available
         else if (economy[choiceTrain-1] == 1)   choiceSeat = 2;
-        if (choiceSeat < 1 || choiceSeat > 2)
+        if (choiceSeat < 1 || choiceSeat > 2)   // invalid choice
         {
             cout<<choiceSeat<<endl;
             cout<<"  Invalid choice."<<endl;
@@ -125,29 +132,29 @@ void Customer::bookTicket()    //search for available trains for routes selected
         }
     }
 
-    string custName, custPhNum;
+    string custName, custPhNum; // need name and phone number
     cout<<"\n  Please enter your name and phone number to confirm the booking.\n  Name: ";
     cin>>custName;
     cout<<"  Phone Number: ";
     cin>>custPhNum;
 
     Ticket tempTicket(custName, custPhNum, dept, validDeptIndexes[choiceTrain-1], validArrIndexes[choiceTrain-1], validtrains[choiceTrain-1]->getID(), choiceSeat, passengers);
-    tempTicket.bookSeats();
-    tempTicket.store();
+    tempTicket.bookSeats(); // books seats in the train
+    tempTicket.store(); // stores booking information in external file
 
-    cout<<"\n  Seats booked."<<endl;
+    cout<<"\n  Seats booked."<<endl;    // confirm booking
     cout<<"  ";
-    system("PAUSE");
+    system("PAUSE");    // wait for user to read
 }
 
-void Customer::viewBooking()
+void Customer::viewBooking()    // view booked tickets for particular customer; overloaded from parent
 {
     string custName, custPhNum;
-    system("CLS");
-    cout<<endl;
-    cout<<"  Please enter your name and phone number to view the booking.\n  Name: ";
+    system("CLS");  // clear screen
+    cout<<endl; // leave a line gap at the top
+    cout<<"  Please enter your name and phone number to view the booking.\n  Name: ";   // get name and phone number to check for bookings
     cin>>custName;
     cout<<"  Phone Number: ";
     cin>>custPhNum;
-    User::viewBooking(custName, custPhNum, -1, 1);
+    User::viewBooking(custName, custPhNum, -1, 1);  // pass information to parent function
 }

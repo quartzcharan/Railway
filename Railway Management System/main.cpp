@@ -58,54 +58,56 @@ void setup()    //sets up all the stations and trains for the program to use
     openFile.close();
 
     Ticket tempTicket;
-    tempTicket.read();
+    tempTicket.read();  // bookings being read by Ticket class
 }
 
 int main()
 {
     setup();
 
-    int choice;
+    int choice; // user choice
 
-    while (choice != 3)
+    while (choice != 3) // while not exiting
     {
-        system("CLS");
-        cout<<endl;
-        cout<<"  1. Administrator\n  2. Customer\n  3. Exit\n  Choice: ";
-        cin>>choice;
+        system("CLS");  // clear the screen
+        cout<<endl; // leave a line gap on top
+        cout<<"  1. Administrator\n  2. Customer\n  3. Exit\n  Choice: ";   // display choices
+        cin>>choice;    // get choice
         int userChoice;
 
-        if (choice == 1)
+        if (choice == 1)    // if administrator
         {
-            system("CLS");
-            Administrator* user = new Administrator();
-            cout<<endl;
-            cout<<"  1. Add a station to database\n  2. Add a train to database\n";
+            system("CLS");  // clear the screen
+            cout<<endl; // leave a line gap on top
+
+            Administrator* user = new Administrator();  // creating Administrator
+            cout<<"  1. Add a station to database\n  2. Add a train to database\n"; // showing administrative choices
             cout<<"  3. View bookings\n  4. View Station Timetable\n  Choice: ";
             cin>>userChoice;
 
-            if (userChoice == 1)    user->createStation("", 0);
-            else if (userChoice == 2)
+            if (userChoice == 1)    user->createStation("", 0); // create new station function run in manual mode
+            else if (userChoice == 2)   // create new train function run in manual mode
             {
-                string tempStringArray[] = {""};
+                string tempStringArray[] = {""};    // needed to pass as default values to function; not used
                 float tempFloatArray[] = {0.0F};
                 user->createTrain(-1, tempStringArray, tempStringArray, tempStringArray, tempFloatArray, 0);
             }
-            else if (userChoice == 3)   user->viewBooking();
-            else if (userChoice == 4)   user->viewTimeTable();
-            delete user;
+            else if (userChoice == 3)   user->viewBooking();    // view bookings for a train
+            else if (userChoice == 4)   user->viewTimeTable();  // view timetable for a station
+            delete user;    // delete allocated memory for Administrator object
         }
-        else if (choice == 2)
+        else if (choice == 2)   // Customer
         {
-            system("CLS");
-            Customer* user = new Customer();
-            cout<<endl;
-            cout<<"  1. Book a ticket\n  2. View Ticket\n  3. View Station Timetable\n  Choice: ";
+            system("CLS");  //clear the screen
+            cout<<endl; // leave a line gap on top
+
+            Customer* user = new Customer();    // creating Customer
+            cout<<"  1. Book a ticket\n  2. View Ticket\n  3. View Station Timetable\n  Choice: ";  //showing customer choices
             cin>>userChoice;
 
-            if (userChoice == 1)    user->bookTicket();
-            else if (userChoice == 2)   user->viewBooking();
-            else if (userChoice == 3)   user->viewTimeTable();
+            if (userChoice == 1)    user->bookTicket(); // make a new booking
+            else if (userChoice == 2)   user->viewBooking();    // view previously booked tickets
+            else if (userChoice == 3)   user->viewTimeTable();  // view timetable for a station
             delete user;
         }
     }

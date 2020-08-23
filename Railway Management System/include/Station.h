@@ -18,7 +18,7 @@ public:
 protected:
 
 private:
-    string location;    //location of train; used in trie
+    string location;    //location of station; used in trie
     Train *t[MAXTRAINS];
 };
 

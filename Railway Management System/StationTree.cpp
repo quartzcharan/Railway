@@ -27,7 +27,7 @@ void addStation (string str, Station* newStation)
     for (int i=0; i<len; i++)       //going down to last alphabet
     {
         int id = str[i] - 'a';
-        if (x->next[id] == NULL)    x->next[id] = new node();
+        if (x->next[id] == NULL)    x->next[id] = new node();   // if required alphabet is unavailable, create new node
         x = x->next[id];
     }
 
