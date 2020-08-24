@@ -2,7 +2,7 @@ Train:
 3
 chittagong dhaka khulna
 11:00 13:00 -1
--1 12:00 14:00
+09:00 12:00 14:00
 10.0 20.5 -1.0
 
 Train:
@@ -15,7 +15,6 @@ dhaka chittagong
 Train
 3
 chittagong dhaka khulna 
-09:00 11:00 -1 
+09:00 11:00 14:00 
 -1 10:00 12:00 
 10 20.5 -1 
-

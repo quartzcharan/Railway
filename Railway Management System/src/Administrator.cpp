@@ -80,6 +80,7 @@ void Administrator::createTrain(int n, string stations[],string deptTimes[], str
             system("PAUSE");    // wait for user to read
             return; // incorrect input so leave
         }
+
         Train *t = s[i]->getTrain(ind[i]);  // retrieve the first train in the station
         while (t != NULL && ind[i] < MAXSTATIONS) //looping over trains already present in station's list
         {
@@ -87,7 +88,24 @@ void Administrator::createTrain(int n, string stations[],string deptTimes[], str
             {
                 if (t->getStation(j) == s[i]->getLocation())        //found the station
                 {
-                    if((t->getArrTime(j) == arrTimes[i] && arrTimes[i] != "-1") || (t->getDeptTime(j) == deptTimes[i] && deptTimes[i] != "-1")) // there is conflicting information
+                    string arrNew, deptNew, arrOld, deptOld;
+                    if (arrTimes[i] == "-1")    arrNew = to_string(0);  // very low value for train that starts from this station
+                    else    arrNew = arrTimes[i];
+                    if (deptTimes[i] == "-1")   deptNew = to_string(999);   // very high value for train that never leaves
+                    else    deptNew = deptTimes[i];
+                    if (t->getArrTime(j) == "-1")   arrOld = to_string(0);
+                    else    arrOld = t->getArrTime(j);
+                    if (t->getDeptTime(j) == "-1")  deptOld = to_string(999);
+                    else    deptOld = t->getDeptTime(j);
+
+                    /*
+                        Errors occur if the given departure time is before the given arrival time,
+                        or if there is some overlap with another train already in the station.
+                        Checking errors such as the same time being given for one train at different stations,
+                        or geographical inconsistencies is beyond the scope of this program.
+                    */
+
+                    if ((deptNew <= arrNew) || (arrNew < deptOld && arrOld < deptNew))
                     {
                         cout<<"  Invalid time at station "<<s[i]->getLocation()<<endl;
                         cout<<"  ";

@@ -118,7 +118,7 @@
 	<fstream>
 	<string.h>
 
-1598189725 source:e:\github\railway\railway management system\main.cpp
+1598243328 source:e:\github\railway\railway management system\main.cpp
 	<iostream>
 	"Administrator.h"
 	"Customer.h"
@@ -126,8 +126,9 @@
 	"Ticket.h"
 	<fstream>
 
-1598187776 e:\github\railway\railway management system\include\administrator.h
+1598242146 e:\github\railway\railway management system\include\administrator.h
 	"User.h"
+	<string>
 	<fstream>
 	<iostream>
 
@@ -156,7 +157,7 @@
 1598188286 e:\github\railway\railway management system\include\train.h
 	<iostream>
 
-1598188651 source:e:\github\railway\railway management system\src\administrator.cpp
+1598242721 source:e:\github\railway\railway management system\src\administrator.cpp
 	"Administrator.h"
 	"../StationTree.h"
 
@@ -183,7 +184,7 @@
 	"User.h"
 	"../StationTree.h"
 
-1598189889 source:e:\github\railway\railway management system\stationtree.cpp
+1598190634 source:e:\github\railway\railway management system\stationtree.cpp
 	<iostream>
 	"StationTree.h"
 
