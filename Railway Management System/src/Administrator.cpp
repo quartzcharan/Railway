@@ -145,15 +145,15 @@ void Administrator::createTrain(int n, string stations[],string deptTimes[], str
         openFile<<endl;
         for (int i=0; i<n; i++) openFile<<arrTimes[i]<<" ";
         openFile<<endl;
-        for (int i=0; i<n; i++) openFile<<distances[i]<<" ";
+        for (int i=0; i<n; i++) openFile<<fixed<<setprecision(1)<<distances[i]<<" ";
         openFile<<endl;
         openFile<<endl;
         openFile.close();
 
-        delete stations;    // deleting all the allocated memory in this function
-        delete deptTimes;
-        delete arrTimes;
-        delete distances;
+        delete[] stations;    // deleting all the allocated memory in this function
+        delete[] deptTimes;
+        delete[] arrTimes;
+        delete[] distances;
     }
 
     Train *t = new Train(); // allocate memory to new train object
