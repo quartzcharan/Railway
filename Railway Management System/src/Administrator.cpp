@@ -82,7 +82,7 @@ void Administrator::createTrain(int n, string stations[],string deptTimes[], str
         }
 
         Train *t = s[i]->getTrain(ind[i]);  // retrieve the first train in the station
-        while (t != NULL && ind[i] < MAXSTATIONS) //looping over trains already present in station's list
+        while (t != NULL && ind[i] < MAXTRAINS) //looping over trains already present in station's list
         {
             for (int j=0; j<MAXSTATIONS; j++)   //find this station in train's list and check information
             {
@@ -117,7 +117,7 @@ void Administrator::createTrain(int n, string stations[],string deptTimes[], str
             ind[i]++;   // move onto next train
             t = s[i]->getTrain(ind[i]); // retrieve next train in station
         }
-        if (ind[i] == MAXSTATIONS)    //station has no space; cannot continue program
+        if (ind[i] == MAXTRAINS)    //station has no space; cannot continue program
         {
             cout<<"  Unable to add train to "<<s[i]->getLocation()<<" station."<<endl;
             cout<<"  ";
