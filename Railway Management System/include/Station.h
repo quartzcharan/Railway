@@ -1,6 +1,6 @@
 #ifndef STATION_H
 #define STATION_H
-#define MAXTRAINS 5  // maximum number of trains a station can hold at once
+#define MAXTRAINS 3  // maximum number of trains a station can hold at once
 #include "Train.h"
 #include <iostream>
 using namespace std;

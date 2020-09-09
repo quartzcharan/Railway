@@ -38,7 +38,7 @@ void Ticket::bookSeats()    // books seats on the train
     for (int i=0; i<MAXTRAINS; i++) // check each train
     {
         Train *tempTrain = tempStation->getTrain(i);    // retrieve train
-        if (tempTrain != NULL && tempTrain->getID() == trainID)  // found valid train
+        if (tempTrain->getID() == trainID)  // found valid train
         {
             for (int j=deptInd; j<arrInd; j++)  tempTrain->occupySeat(seatCategory, seats, j);  // decrement number of seats in required category at each point between departure and arrival (not including arrival)
         }
