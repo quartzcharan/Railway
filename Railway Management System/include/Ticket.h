@@ -1,6 +1,6 @@
 #ifndef TICKET_H
 #define TICKET_H
-#define MAXTRAINS 3
+#define MAXTRAINS 5
 #define MAXSTATIONS 5
 #include "../StationTree.h"
 #include "Station.h"
