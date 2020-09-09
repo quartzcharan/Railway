@@ -2,3 +2,4 @@ dhaka
 chittagong
 khulna
 rajshahi
+sylhet

@@ -20,7 +20,11 @@ void setup()    //sets up all the stations and trains for the program to use
         cout<<"  Unable to open file 'Stations.txt'.\n  Setup failed.\n  Exiting Program.\n"<<endl;
         exit(1);
     }
-    while (getline(openFile, str))  temp.createStation(str, 1); //creating each of the stations
+    while (getline(openFile, str))
+    {
+        Station* newStation = new Station();    // allocate memory for new station object
+        addStation(str, newStation);    // add station to trie
+    }
 
     openFile.close();   //done with stations
 
@@ -85,7 +89,7 @@ int main()
             cout<<"  3. View bookings\n  4. View Station Timetable\n  Choice: ";
             cin>>userChoice;
 
-            if (userChoice == 1)    user->createStation("", 0); // create new station function run in manual mode
+            if (userChoice == 1)    user->createStation(); // create new station function run in manual mode
             else if (userChoice == 2)   // create new train function run in manual mode
             {
                 string tempStringArray[] = {""};    // needed to pass as default values to function; not used

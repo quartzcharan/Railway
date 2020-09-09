@@ -10,16 +10,15 @@ Administrator::Administrator() : adminId(adminCount+1), pass("")    // construct
 int Administrator::adminCount = 0;  // initializing static variable
 
 
-void Administrator::createStation (string str, int mode)     //creating a new station
+void Administrator::createStation ()     //creating a new station
 {
     system("CLS");  // clear screen
     cout<<endl; // leave a line gap at top
 
-    if (mode == 0)  // mode 0 for manual entry; otherwise used by setup function so no entry required
-    {
-        cout<<"  Enter station name: ";
-        cin>>str;
-    }
+    cout<<"  Enter station name: ";
+    string str;
+    cin>>str;
+
     if (getStation(str) != NULL)           //possible that station already created
     {
         cout<<"  Station already exists."<<endl;
@@ -27,20 +26,18 @@ void Administrator::createStation (string str, int mode)     //creating a new st
         system("PAUSE");    // wait to allow user to see message
         return;
     }
-    if (mode == 0)  // manual entry means new station (not in file)
+
+    fstream openFile;
+    openFile.open("\Stations.txt", ios_base::app);  // opening file in append mode
+    if (!openFile)  //problem reading file; return to main menu
     {
-        fstream openFile;
-        openFile.open("\Stations.txt", ios_base::app);  // opening file in append mode
-        if (!openFile)  //problem reading file; return to main menu
-        {
-            cout<<"  Unable to open file 'Stations.txt'.\n"<<endl;
-            cout<<"  ";
-            system("PAUSE");    // pause to allow user to read
-            return; // unable to add to file so must leave; will cause inconsistencies if we continue
-        }
-        openFile<<str<<endl;    // add station name to file
-        openFile.close();
+        cout<<"  Unable to open file 'Stations.txt'.\n"<<endl;
+        cout<<"  ";
+        system("PAUSE");    // pause to allow user to read
+        return; // unable to add to file so must leave; will cause inconsistencies if we continue
     }
+    openFile<<str<<endl;    // add station name to file
+    openFile.close();
 
     Station* newStation = new Station();    // allocate memory for new station object
     addStation(str, newStation);    // add station to trie

@@ -12,7 +12,7 @@ class Administrator : public User
 {
 public:
     Administrator();
-    void createStation (string str, int mode);
+    void createStation ();
     void createTrain(int n, string stations[], string deptTimes[], string arrTimes[], float distances[], int mode);
     void viewBooking();
 
