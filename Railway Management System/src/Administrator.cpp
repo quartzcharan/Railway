@@ -2,13 +2,10 @@
 #include "../StationTree.h"
 
 
-Administrator::Administrator() : adminId(adminCount+1), pass("")    // constructor
+Administrator::Administrator()  // constructor
 {
-    adminCount++;   // increase count for administrator accounts
+
 }
-
-int Administrator::adminCount = 0;  // initializing static variable
-
 
 void Administrator::createStation ()     //creating a new station
 {

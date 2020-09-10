@@ -5,7 +5,7 @@
 #include "Ticket.h"
 #define MAXSUGGESTIONS 10   // maximum number of results user is shown
 
-Customer::Customer() : phoneNum("")
+Customer::Customer()
 {
 
 }

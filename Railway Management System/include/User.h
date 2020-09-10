@@ -14,12 +14,11 @@ public:
     User();
     void viewTimeTable ();
     virtual void viewBooking() = 0;
-    void setName (string str) { name = str;}
 
 protected:
 
 private:
-    string name;
+
 };
 
 #endif // USER_

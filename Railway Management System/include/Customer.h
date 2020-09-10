@@ -12,12 +12,11 @@ public:
     Customer();
     void bookTicket();
     void viewBooking();
-    void setPhoneNum (string str) { phoneNum = str;}
 
 protected:
 
 private:
-    string phoneNum;
+
 };
 
 #endif // CUSTOMER_

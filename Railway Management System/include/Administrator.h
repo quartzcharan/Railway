@@ -19,9 +19,7 @@ public:
 protected:
 
 private:
-    int adminId;
-    static int adminCount;
-    string pass;
+
 };
 
 #endif // ADMINISTRATOR_

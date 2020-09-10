@@ -1,7 +1,7 @@
 #include "User.h"
 #include "../StationTree.h"
 
-User::User(): name("")  // constructor
+User::User()    // constructor
 {
 
 }
