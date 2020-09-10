@@ -13,7 +13,7 @@ class User
 public:
     User();
     void viewTimeTable ();
-    void viewBooking(string custName="", string custNum="", int tid=-1, int mode=-1);
+    virtual void viewBooking() = 0;
     void setName (string str) { name = str;}
 
 protected:

@@ -55,11 +55,4 @@ void User::viewTimeTable () //shows schedule for a particular station
     system("PAUSE");    // wait for user to read messages
 }
 
-void User::viewBooking(string custName, string custNum, int tid, int mode)  // function to show bookings; mode for administrator/customer
-{
-    Ticket tempTicket;  // create Ticket object
-    cout<<endl; // leave a line gap
-    tempTicket.read(mode, custName, custNum, tid);  // call read function
-    cout<<"  ";
-    system("Pause");    // wait for user to read any messages
-}
+

@@ -157,5 +157,10 @@ void Customer::viewBooking()    // view booked tickets for particular customer; 
     cin>>custName;
     cout<<"  Phone Number: ";
     cin>>custPhNum;
-    User::viewBooking(custName, custPhNum, -1, 1);  // pass information to parent function
+
+    Ticket tempTicket;  // create Ticket object
+    cout<<endl; // leave a line gap
+    tempTicket.read(1, custName, custPhNum, -1);  // call read function
+    cout<<"  ";
+    system("Pause");    // wait for user to read any messages
 }

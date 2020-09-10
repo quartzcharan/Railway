@@ -176,5 +176,9 @@ void Administrator::viewBooking()   // function to view bookings for a particula
     cout<<"  Please enter Train ID: ";  // get train id as input
     cin>>tid;
 
-    User::viewBooking("", "", tid, 2);  // pass to parent function; passing blanks for information not needed
+    Ticket tempTicket;  // create Ticket object
+    cout<<endl; // leave a line gap
+    tempTicket.read(2, "", "", tid);  // call read function
+    cout<<"  ";
+    system("Pause");    // wait for user to read any messages
 }
