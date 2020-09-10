@@ -76,7 +76,7 @@ void Ticket::read(int mode, string custName, string custNum, int tid)   // read 
             for (int i=0; i<MAXTRAINS; i++) // for each train in staion
             {
                 Train *tempTrain = tempStation->getTrain(i);    // get each train
-                if (tempTrain->getID() == trainID)  // found correct train
+                if (tempTrain != NULL && tempTrain->getID() == trainID)  // found correct train
                 {
                     arrSt = tempTrain->getStation(arrInd);  // storing arrival station name
                     deptTime = tempTrain->getDeptTime(deptInd); // storing departure time
