@@ -1,10 +1,22 @@
 # Railway Management System
 
-This project will attempt to create a system that allows users to book train tickets. There will be predefined information regarding the trains, the seats available, the route the train will follow, the stations it will pass through and the specific time it will be stopped at the stations. The information will be presented to the user in stages, depending on the departure and arrival locations given by the user, and will be used to book a seat on their chosen train for them.
+This project attempts to create a database management system to supervise, control and use the various parts of the national railway system.
+The project will allow a user to use the system in both administrative and non-administrative roles. As an administrator, the user will be able to take control of the management of stations and trains. As a customer, the system will provide an interface to manage seat bookings.
 
-## Features
+## Installation
+
+Any C++ compiler can be used to compile the ``main.cpp`` file. Note that there are additional files in the home directory and in the ``src`` subfolder that also need to be compiled. Header files for these can be found in the home directory and include subfolder respectively.
+
+## Usage
+
+A basic user interface has been provided that should make the usage of the program simple to understand. Note that data will be stored in external ``.txt`` and ``.dat`` files with **NO PROTECTION**. This project is meant to be a starting point for larger programs, not a complete program in and of itself.
+
+## Contributing
+
+This project is no longer under active development. Contributions are not being accepted.
 
 ## Credits
-Fida Kamal        180041208\
-Shah Jawad Islam  180041223\
-Alvi Aveen Khan   180041229
+
+<a href="https://github.com/fida6941" target="_blank">**Fida Kamal**</a><br />\
+<a href="https://github.com/jwd222" target="_blank">**Shah Jawad Islam**</a><br />\
+<a href="https://github.com/chocolatekhan" target="_blank">**Alvi Aveen Khan**</a>
