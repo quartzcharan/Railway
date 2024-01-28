@@ -1,6 +1,6 @@
 #ifndef STATIONTREE_H_INCLUDED
 #define STATIONTREE_H_INCLUDED
-#include "Station.h"
+#include "src/Station.h"
 
 struct node             //structure for each node
 {

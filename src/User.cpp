@@ -9,7 +9,7 @@ User::User()    // constructor
 void User::viewTimeTable () //shows schedule for a particular station
 {
     string str;
-    system("CLS");  // clear screen
+    //system("CLS");  // clear screen
     cout<<endl; // leave a line gap at top
 
     cout<<"  Enter Station Name: "; // get station name as input

@@ -15,7 +15,7 @@ void Customer::bookTicket()    //search for available trains for routes selected
     string dept, arr;
     int passengers;
 
-    system("CLS");  // clearing screen
+    //system("CLS");  // clearing screen
     cout<<endl; // leave a line gap at top
 
     //getting user input
@@ -75,7 +75,7 @@ void Customer::bookTicket()    //search for available trains for routes selected
         return; // return to main menu
     }
 
-    system("CLS");  // clear screen
+    //system("CLS");  // clear screen
     cout<<endl; // leave a line gap at the top
 
     cout<<"  Departure: "<<dept<<"\n  Arrival: "<<arr<<"\n\n"<<endl;    // heading for results
@@ -151,7 +151,7 @@ void Customer::bookTicket()    //search for available trains for routes selected
 void Customer::viewBooking()    // view booked tickets for particular customer; overloaded from parent
 {
     string custName, custPhNum;
-    system("CLS");  // clear screen
+    //system("CLS");  // clear screen
     cout<<endl; // leave a line gap at the top
     cout<<"  Please enter your name and phone number to view the booking.\n  Name: ";   // get name and phone number to check for bookings
     cin>>custName;
