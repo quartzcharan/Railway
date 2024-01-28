@@ -19,7 +19,7 @@ Ticket::Ticket(string custName, string custNum, string dept, int deptPnt, int ar
 int Ticket::store()
 {
     fstream openFile;
-    openFile.open("\Tickets.dat", ios::app|ios::binary);    // append and binary mode
+    openFile.open("../Tickets.dat", ios::app|ios::binary);    // append and binary mode
     if (!openFile)  //problem reading file; return to main menu
     {
         cout<<"  Unable to open file 'Tickets.dat'.\n"<<endl;
@@ -48,7 +48,7 @@ void Ticket::bookSeats()    // books seats on the train
 void Ticket::read(int mode, string custName, string custNum, int tid)   // read tickets from external file
 {
     ifstream openFile;
-    openFile.open("\Tickets.dat", ios::in|ios::binary); // read file in binary mode
+    openFile.open("../Tickets.dat", ios::in|ios::binary); // read file in binary mode
 
     if (!openFile && (mode == 1 || mode == 2))  // show error for manual mode
     {

@@ -1,8 +1,8 @@
 #include <iostream>
-#include "Administrator.h"
-#include "Customer.h"
-#include "User.h"
-#include "Ticket.h"
+#include "src/Administrator.h"
+#include "src/Customer.h"
+#include "src/User.h"
+#include "src/Ticket.h"
 #include <fstream>
 
 using namespace std;
@@ -14,7 +14,7 @@ void setup()    //sets up all the stations and trains for the program to use
     int num;            //stores integer numbers
     Administrator temp; // temporary object to create Station and Train objects
 
-    openFile.open("\Stations.txt"); //working with stations
+    openFile.open("Stations.txt"); //working with stations
     if (!openFile)                  //problem reading file; must stop program
     {
         cout<<"  Unable to open file 'Stations.txt'.\n  Setup failed.\n  Exiting Program.\n"<<endl;
@@ -28,7 +28,7 @@ void setup()    //sets up all the stations and trains for the program to use
 
     openFile.close();   //done with stations
 
-    openFile.open("\Trains.txt");   //working with trains
+    openFile.open("Trains.txt");   //working with trains
     if (!openFile)  //problem reading file; must stop program
     {
         cout<<"  Unable to open file 'Trains.txt'.\n  Setup failed.\n  Exiting Program.\n"<<endl;
@@ -73,7 +73,7 @@ int main()
 
     while (choice != 3) // while not exiting
     {
-        system("CLS");  // clear the screen
+        //system("CLS");  // clear the screen
         cout<<endl; // leave a line gap on top
         cout<<"  1. Administrator\n  2. Customer\n  3. Exit\n  Choice: ";   // display choices
         cin>>choice;    // get choice
@@ -81,7 +81,7 @@ int main()
 
         if (choice == 1)    // if administrator
         {
-            system("CLS");  // clear the screen
+            //system("CLS");  // clear the screen
             cout<<endl; // leave a line gap on top
 
             Administrator* user = new Administrator();  // creating Administrator
@@ -102,7 +102,7 @@ int main()
         }
         else if (choice == 2)   // Customer
         {
-            system("CLS");  //clear the screen
+            //system("CLS");  //clear the screen
             cout<<endl; // leave a line gap on top
 
             Customer* user = new Customer();    // creating Customer

@@ -9,7 +9,7 @@ Administrator::Administrator()  // constructor
 
 void Administrator::createStation ()     //creating a new station
 {
-    system("CLS");  // clear screen
+    //system("CLS");  // clear screen
     cout<<endl; // leave a line gap at top
 
     cout<<"  Enter station name: ";
@@ -25,7 +25,7 @@ void Administrator::createStation ()     //creating a new station
     }
 
     fstream openFile;
-    openFile.open("\Stations.txt", ios_base::app);  // opening file in append mode
+    openFile.open("../Stations.txt", ios_base::app);  // opening file in append mode
     if (!openFile)  //problem reading file; return to main menu
     {
         cout<<"  Unable to open file 'Stations.txt'.\n"<<endl;
@@ -42,7 +42,7 @@ void Administrator::createStation ()     //creating a new station
 
 void Administrator::createTrain(int n, string stations[],string deptTimes[], string arrTimes[], float distances[], int mode)    // creating a new train
 {
-    system("CLS");  // clear the screen
+    //system("CLS");  // clear the screen
     cout<<endl; // leave one line gap at top
     if (mode == 0)  // mode 0 for manual entry; otherwise used by setup function so does not need entries
     {
@@ -62,7 +62,8 @@ void Administrator::createTrain(int n, string stations[],string deptTimes[], str
         for (int i=0; i<n; i++) cin>>distances[i];
     }
 
-    int ind[n] = {0};   //will store index at which to put the train at each station
+    int ind[n];
+    ind[n] = {0};   //will store index at which to put the train at each station
     Station* s[n];      //pointers to the stations
     for (int i=0; i<n; i++) // for each station
     {
@@ -123,7 +124,7 @@ void Administrator::createTrain(int n, string stations[],string deptTimes[], str
     if (mode == 0)  // for manual entry, add details of train to file
     {
         fstream openFile;
-        openFile.open("\Trains.txt", ios_base::app);    //append mode
+        openFile.open("../Trains.txt", ios_base::app);    //append mode
         if (!openFile)  //problem reading file; return to main menu
         {
             cout<<"  Unable to open file 'Trains.txt'.\n"<<endl;
@@ -166,7 +167,7 @@ void Administrator::createTrain(int n, string stations[],string deptTimes[], str
 
 void Administrator::viewBooking()   // function to view bookings for a particular train; overloaded from parent
 {
-    system("CLS");  // clear screen
+    //system("CLS");  // clear screen
     cout<<endl; // leave a line gap at the top
 
     int tid;
